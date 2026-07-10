@@ -1,0 +1,608 @@
+Here is an expanded, production-ready influencer platform with a modular structure, CMS-like architecture, and premium features.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ALEX CARTER · Global Journey Influencer | Book Unique Experiences</title>
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper JS for carousel (big project touch) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #fefaf5;
+            color: #1a1a2c;
+            overflow-x: hidden;
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1e4da;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d45a2b;
+            border-radius: 10px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        /* premium glass header */
+        header {
+            background: rgba(255, 250, 245, 0.96);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.03);
+            border-bottom: 1px solid rgba(210, 90, 40, 0.15);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(125deg, #c25729, #e07a4a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #c25729;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2a2a3b;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #d45a2b;
+        }
+        .btn-pill {
+            background: #d45a2b;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(210, 90, 40, 0.2);
+        }
+        .btn-pill-outline {
+            background: transparent;
+            border: 2px solid #d45a2b;
+            padding: 0.55rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #d45a2b;
+        }
+
+        /* HERO section big layout */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 3rem;
+            padding: 5rem 0 4rem;
+            align-items: center;
+        }
+        .hero-badge {
+            background: #ffede3;
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #bc4e22;
+            margin-bottom: 1.3rem;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.4rem;
+        }
+        .hero-highlight {
+            color: #d45a2b;
+        }
+        .stats-grid {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .stat-item h3 {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        .hero-img {
+            background: linear-gradient(145deg, #ffe2cf, #ffd4ba);
+            border-radius: 40% 60% 35% 65% / 70% 40% 60% 30%;
+            padding: 1rem;
+            text-align: center;
+        }
+        .hero-img img {
+            width: 85%;
+            border-radius: 40% 60% 35% 65% / 70% 40% 60% 30%;
+            object-fit: cover;
+            box-shadow: 0 30px 35px -15px rgba(0,0,0,0.2);
+        }
+
+        /* section headings */
+        .section-header {
+            text-align: center;
+            margin: 4rem 0 2rem;
+        }
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+        }
+        .section-header p {
+            color: #5a5a74;
+            max-width: 600px;
+            margin: 0.8rem auto 0;
+        }
+
+        /* journey showcase - swiper */
+        .journey-swiper {
+            padding: 1rem 0 3rem;
+        }
+        .journey-card {
+            background: white;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .journey-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+        .journey-content {
+            padding: 1.5rem;
+        }
+        .journey-content h3 {
+            font-size: 1.5rem;
+        }
+        .journey-meta {
+            color: #d45a2b;
+            font-weight: 600;
+            margin: 0.6rem 0;
+        }
+
+        /* big booking section with advanced */
+        .booking-premium {
+            background: linear-gradient(120deg, #fff3ea, #ffefe6);
+            border-radius: 3rem;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+        }
+        .booking-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+        }
+        .feature-list {
+            list-style: none;
+        }
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .booking-form-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 2rem;
+        }
+        .input-modern {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ebdad0;
+            border-radius: 60px;
+            margin-bottom: 1rem;
+            font-family: inherit;
+        }
+        textarea.input-modern {
+            border-radius: 1.5rem;
+            resize: vertical;
+        }
+        .btn-book-now {
+            background: #1e1e2a;
+            color: white;
+            padding: 1rem;
+            border-radius: 60px;
+            width: 100%;
+            font-weight: 800;
+            transition: 0.2s;
+        }
+        .btn-book-now:hover {
+            background: #d45a2b;
+        }
+
+        /* Join & subscribe big area */
+        .join-community {
+            background: #1e1e2c;
+            border-radius: 3rem;
+            padding: 3.5rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+        .flex-subscribe {
+            display: flex;
+            max-width: 550px;
+            margin: 2rem auto;
+            gap: 1rem;
+        }
+        .flex-subscribe input {
+            flex: 2;
+            padding: 1rem;
+            border-radius: 60px;
+            border: none;
+        }
+        .social-icons-big {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .social-icons-big a {
+            color: white;
+            font-size: 2rem;
+            transition: 0.2s;
+        }
+
+        footer {
+            border-top: 1px solid #f0e0d2;
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero, .booking-two-col {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <h1>ALEX CARTER <span>✦ journey maker</span></h1>
+            </div>
+            <div class="nav-links">
+                <a href="#journey" class="nav-link">Journey Log</a>
+                <a href="#booking" class="nav-link">Book Session</a>
+                <a href="#join" class="nav-link">Join Tribe</a>
+                <button class="btn-pill" id="quickSubscribeNav"><i class="fas fa-bolt"></i> Subscribe</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <!-- HERO section -->
+        <div class="hero">
+            <div>
+                <div class="hero-badge"><i class="fas fa-map-marked-alt"></i> 6 continents · 42 countries</div>
+                <h1>Sharing the untamed <span class="hero-highlight">journey</span> of a modern explorer</h1>
+                <p style="font-size: 1.1rem; line-height: 1.5;">Raw storytelling, borderless adventures, and a tribe that grows together. Join my movement — real moments, real connection.</p>
+                <div class="stats-grid">
+                    <div class="stat-item"><h3>2.4M+</h3><span>Global followers</span></div>
+                    <div class="stat-item"><h3>273+</h3><span>Journey chapters</span></div>
+                    <div class="stat-item"><h3>1.2K+</h3><span>Private bookings</span></div>
+                </div>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn-pill" id="heroBookBtn" style="padding: 0.9rem 2rem;"><i class="fas fa-calendar-alt"></i> Book a journey call</button>
+                    <button class="btn-pill-outline" id="heroJourneyBtn"><i class="fas fa-play-circle"></i> Watch my story</button>
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex Carter influencer portrait">
+            </div>
+        </div>
+    </div>
+
+    <!-- JOURNEY SECTION - BIG SWIPER (sharing journey) -->
+    <div id="journey" class="container">
+        <div class="section-header">
+            <h2>📸 My ongoing journey <span style="color:#d45a2b;">#RealSideOfTravel</span></h2>
+            <p>Fresh stories from the road — every week a new destination, unfiltered and deep.</p>
+        </div>
+        <div class="journey-swiper swiper">
+            <div class="swiper-wrapper">
+                <!-- slides generated dynamically via JS but we fill static data to resemble CMS -->
+                <div class="swiper-slide">
+                    <div class="journey-card">
+                        <img src="https://picsum.photos/id/104/600/400" alt="Patagonia">
+                        <div class="journey-content">
+                            <h3>Crossing Patagonia solo</h3>
+                            <div class="journey-meta"><i class="far fa-clock"></i> 3 days ago · 12min read</div>
+                            <p>Wind, glaciers, and the most honest conversations with locals. I’m sharing my full gear breakdown & emotional shift.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="journey-card">
+                        <img src="https://picsum.photos/id/169/600/400" alt="Morocco desert">
+                        <div class="journey-content">
+                            <h3>Sahara nights under stars</h3>
+                            <div class="journey-meta"><i class="far fa-clock"></i> 1 week ago · 8min read</div>
+                            <p>From nomadic tea ceremonies to sandstorm survival — join me behind the dunes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="journey-card">
+                        <img src="https://picsum.photos/id/15/600/400" alt="Japan hidden trail">
+                        <div class="journey-content">
+                            <h3>Hidden Japan: pilgrimage routes</h3>
+                            <div class="journey-meta"><i class="far fa-clock"></i> 2 weeks ago · 10min read</div>
+                            <p>Ancient temples and forest bathing. How slow travel changed my perspective.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="journey-card">
+                        <img src="https://picsum.photos/id/29/600/400" alt="Colombia coffee region">
+                        <div class="journey-content">
+                            <h3>Colombia: beyond the coffee</h3>
+                            <div class="journey-meta"><i class="far fa-clock"></i> 1 month ago · 15min read</div>
+                            <p>True sustainable tourism & meeting farmers. The journey that inspires my booking sessions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        <div style="text-align: center; margin: 1rem 0 3rem;">
+            <button id="seeAllJourneyBtn" class="btn-pill-outline"><i class="fab fa-instagram"></i> Follow my daily journey →</button>
+        </div>
+    </div>
+
+    <!-- BOOKING PREMIUM SECTION: booking that i will share my journey -->
+    <div class="container" id="booking">
+        <div class="booking-premium">
+            <div class="booking-two-col">
+                <div>
+                    <h2 style="font-size: 2rem;">✨ Book a 1:1 journey session</h2>
+                    <p style="margin: 1rem 0 1.5rem;">Let me personally share my journey playbook, travel hacks, and behind-the-scenes insights. Each booking includes a 50-min private call + digital adventure kit.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-map" style="color:#d45a2b; font-size: 1.4rem;"></i> Custom route planning from my real logs</li>
+                        <li><i class="fas fa-camera-retro" style="color:#d45a2b;"></i> Content creator tips from 2M+ audience</li>
+                        <li><i class="fas fa-hand-sparkles" style="color:#d45a2b;"></i> Exclusive journey PDF + unreleased videos</li>
+                        <li><i class="fas fa-users" style="color:#d45a2b;"></i> Q&A about my wildest moments & fails</li>
+                    </ul>
+                    <div style="background: #e6d9ce30; border-radius: 30px; padding: 1rem; margin-top: 1rem;">
+                        <i class="fas fa-globe"></i> “I share every detail — from my hidden location database to how I stay safe solo.” — Alex
+                    </div>
+                </div>
+                <div class="booking-form-card">
+                    <h3 style="margin-bottom: 1rem;">📅 Request a journey date</h3>
+                    <form id="bigBookingForm">
+                        <input type="text" id="fullName" class="input-modern" placeholder="Full name *" required>
+                        <input type="email" id="emailBooking" class="input-modern" placeholder="Email address *" required>
+                        <select id="sessionType" class="input-modern">
+                            <option value="Adventure Roadmap">🗺️ Adventure Roadmap (plan a trip)</option>
+                            <option value="Creator Growth">📈 Creator Growth / storytelling</option>
+                            <option value="Pure Journey Talk">🎙️ Pure journey talk & motivation</option>
+                        </select>
+                        <textarea rows="3" id="bookingMsg" class="input-modern" placeholder="Tell me what inspires you..."></textarea>
+                        <button type="submit" class="btn-book-now"><i class="fas fa-ticket-alt"></i> Send booking request →</button>
+                        <div id="bookingGlobalFeedback" style="margin-top: 1rem; text-align: center; font-weight: 500;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JOIN & SUBSCRIBE section (big community) -->
+    <div class="container" id="join">
+        <div class="join-community">
+            <i class="fas fa-hand-peace" style="font-size: 3rem; color:#d45a2b;"></i>
+            <h2 style="margin-top: 1rem;">Join the inner circle 🌍</h2>
+            <p style="max-width: 550px; margin: 1rem auto;">Subscribe to my weekly "Journey Log" newsletter — get raw stories, upcoming live streams and exclusive giveaways.</p>
+            <div class="flex-subscribe">
+                <input type="email" id="mainSubscribeEmail" placeholder="Your best email">
+                <button id="mainSubscribeBtn" class="btn-pill" style="background: #d45a2b; white-space: nowrap;"><i class="fas fa-envelope-open-text"></i> Subscribe now</button>
+            </div>
+            <div id="subscribeGlobalMsg" style="font-size: 0.9rem; min-height: 2rem;"></div>
+            <div class="social-icons-big">
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-spotify"></i></a>
+            </div>
+            <p style="margin-top: 1rem;"><i class="fas fa-headset"></i> + access to monthly live “Ask me anything”</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Alex Carter — Real journey, real impact. Adventure awaits. | <i class="fas fa-mountain"></i> #JoinTheJourney</p>
+        </div>
+    </footer>
+</main>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // ======================== BIG PROJECT FEATURES ========================
+    // 1. Swiper carousel for journey sharing
+    const swiper = new Swiper('.journey-swiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        breakpoints: {
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 }
+        }
+    });
+
+    // 2. Smooth scrolling for nav and buttons
+    function scrollToSection(id) {
+        const section = document.getElementById(id);
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = link.getAttribute('href').substring(1);
+            scrollToSection(target);
+        });
+    });
+    document.getElementById('heroBookBtn')?.addEventListener('click', () => scrollToSection('booking'));
+    document.getElementById('quickSubscribeNav')?.addEventListener('click', () => scrollToSection('join'));
+    document.getElementById('heroJourneyBtn')?.addEventListener('click', () => scrollToSection('journey'));
+    
+    // 3. Booking form logic (big project - sends request with localstorage simulation)
+    const bookingForm = document.getElementById('bigBookingForm');
+    const bookingFeedbackDiv = document.getElementById('bookingGlobalFeedback');
+    bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('emailBooking').value.trim();
+        const session = document.getElementById('sessionType').value;
+        const msg = document.getElementById('bookingMsg').value.trim();
+        if (!name || !email || !email.includes('@')) {
+            bookingFeedbackDiv.innerHTML = '⚠️ Please fill name & valid email.';
+            bookingFeedbackDiv.style.color = '#c0392b';
+            return;
+        }
+        // store booking request in "big project" style
+        const bookingRequest = { name, email, session, msg, date: new Date().toISOString() };
+        let bookings = JSON.parse(localStorage.getItem('journey_bookings') || '[]');
+        bookings.push(bookingRequest);
+        localStorage.setItem('journey_bookings', JSON.stringify(bookings));
+        bookingFeedbackDiv.innerHTML = `✅ ${name}, you’ve booked a ${session} session! I’ll email you within 12h with journey details. ✨`;
+        bookingFeedbackDiv.style.color = '#2a7a3e';
+        bookingForm.reset();
+        setTimeout(() => { bookingFeedbackDiv.innerHTML = ''; }, 5000);
+        // bonus notification (admin demo)
+        console.log('Booking saved:', bookingRequest);
+    });
+
+    // 4. Subscribe functions (join + newsletter)
+    const mainSubscribeBtn = document.getElementById('mainSubscribeBtn');
+    const mainEmailInput = document.getElementById('mainSubscribeEmail');
+    const subscribeMsgDiv = document.getElementById('subscribeGlobalMsg');
+    
+    function handleSubscribe(emailInput, feedbackDiv, successMsg = "🔥 You're in! Welcome to the journey tribe. Expect epic stories every week.") {
+        const email = emailInput.value.trim();
+        if (!email || !email.includes('@')) {
+            feedbackDiv.innerHTML = '❄️ Please enter a valid email address.';
+            feedbackDiv.style.color = '#ffbf86';
+            return false;
+        }
+        let subscribers = JSON.parse(localStorage.getItem('journey_subscribers') || '[]');
+        if (!subscribers.includes(email)) {
+            subscribers.push(email);
+            localStorage.setItem('journey_subscribers', JSON.stringify(subscribers));
+        }
+        feedbackDiv.innerHTML = successMsg;
+        feedbackDiv.style.color = '#adebad';
+        emailInput.value = '';
+        setTimeout(() => { feedbackDiv.innerHTML = ''; }, 4500);
+        return true;
+    }
+    
+    mainSubscribeBtn.addEventListener('click', () => {
+        handleSubscribe(mainEmailInput, subscribeMsgDiv, "💌 Subscribed! Check your inbox (and spam) for my welcome journey letter.");
+    });
+    // also nav subscribe quick demo
+    const navQuickBtn = document.getElementById('quickSubscribeNav');
+    navQuickBtn.addEventListener('click', () => {
+        scrollToSection('join');
+        setTimeout(() => {
+            mainEmailInput.focus();
+        }, 400);
+    });
+    
+    // 5. See all journey button: interactive share my journey demonstration
+    const seeAllBtn = document.getElementById('seeAllJourneyBtn');
+    seeAllBtn.addEventListener('click', () => {
+        alert("📱 Follow @AlexCarterJourney on Instagram + TikTok for real-time journey updates, LIVE Q&As, and raw moments. Let’s share the path together!");
+        window.open("https://www.instagram.com/", "_blank"); // symbolic open
+    });
+    
+    // 6. Hover / dynamic stats effect - just for flair (big project UX)
+    const statNumbers = document.querySelectorAll('.stat-item h3');
+    statNumbers.forEach(stat => {
+        stat.addEventListener('mouseenter', () => {
+            stat.style.transform = "scale(1.05)";
+            stat.style.transition = "0.2s";
+        });
+        stat.addEventListener('mouseleave', () => { stat.style.transform = "scale(1)"; });
+    });
+    
+    // 7. additional "share journey" card detail click
+    document.querySelectorAll('.journey-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.querySelector('h3')?.innerText;
+            if(title) alert(`✨ Journey chapter: "${title}". Want the full behind-the-scenes? Subscribe to my newsletter for exclusive videos & maps. ✨`);
+        });
+    });
+
+    // 8. optional: display total bookings from local storage for admin (just log, big project feature)
+    if(localStorage.getItem('journey_bookings')) {
+        let count = JSON.parse(localStorage.getItem('journey_bookings')).length;
+        console.log(`[Alex Carter Platform] Total journey bookings so far: ${count}`);
+    }
+    // Show welcome toast style (no external lib, just friendly)
+    const style = document.createElement('style');
+    style.textContent = `.journey-card { cursor: pointer; } .btn-pill, .btn-book-now { transition: all 0.2s; }`;
+    document.head.appendChild(style);
+</script>
+</body>
+</html>
+```

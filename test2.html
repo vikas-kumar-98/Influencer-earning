@@ -1,0 +1,436 @@
+Here is an advanced, ultra-modern software engineer portfolio website with a futuristic AI aesthetic, real-time 3D, dynamic code execution, and an interactive terminal.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NOVA | AI Software Engineer - Futuristic Portfolio</title>
+    <meta name="description" content="Next-gen AI engineer portfolio with holographic 3D, live coding lab, dynamic quantum skills visualization.">
+    <meta name="theme-color" content="#000000">
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- GSAP & Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #010104;
+            color: #eef5ff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom animated cursor */
+        .cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,255,255,0.15) 0%, rgba(64,0,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.08s ease;
+        }
+        .cursor-dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #0ff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 8px cyan;
+        }
+
+        /* Glassmorphism premium */
+        .glass-panel {
+            background: rgba(8, 16, 32, 0.55);
+            backdrop-filter: blur(16px);
+            border-radius: 2rem;
+            border: 1px solid rgba(0, 255, 255, 0.25);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.4), 0 0 20px rgba(0,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .neon-glow-text {
+            background: linear-gradient(135deg, #a0f0ff, #8a2be2, #00c8ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0,255,255,0.3);
+        }
+
+        section {
+            padding: 120px 6%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Particle background canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .btn-neon {
+            background: linear-gradient(90deg, #0ff, #6a0dad);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 12px cyan;
+        }
+        .btn-outline-cyan {
+            background: transparent;
+            border: 1.5px solid #0ff;
+            padding: 12px 28px;
+            border-radius: 40px;
+            color: #0ff;
+            transition: 0.3s;
+        }
+        .btn-outline-cyan:hover, .btn-neon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px cyan;
+            letter-spacing: 1px;
+        }
+
+        /* 3D sphere container */
+        #tech-sphere-container {
+            height: 450px;
+            width: 100%;
+            border-radius: 2rem;
+            overflow: hidden;
+        }
+
+        /* Skills floating grid */
+        .floating-tech-icons i {
+            transition: all 0.2s;
+            filter: drop-shadow(0 0 6px cyan);
+        }
+        .floating-tech-icons i:hover {
+            transform: translateY(-12px) scale(1.2);
+            color: #0ff;
+        }
+
+        /* Project cards 3D tilt */
+        .project-card-3d {
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transform-style: preserve-3d;
+            background: rgba(12, 20, 35, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 1.8rem;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        .project-card-3d:hover {
+            transform: translateY(-20px) rotateX(6deg) rotateY(2deg);
+            border-color: cyan;
+            box-shadow: 0 30px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        /* Timeline futurism */
+        .timeline-future {
+            border-left: 2px solid cyan;
+            position: relative;
+        }
+        .timeline-node {
+            position: relative;
+            padding: 1.2rem 2rem;
+            background: rgba(0, 20, 40, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+        }
+        .timeline-node::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 30px;
+            width: 18px;
+            height: 18px;
+            background: cyan;
+            border-radius: 50%;
+            box-shadow: 0 0 15px cyan;
+        }
+
+        /* code terminal */
+        .code-window {
+            background: #03050b;
+            border-radius: 1.2rem;
+            border-left: 5px solid #0ff;
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 70px 5%; }
+        }
+
+        /* Dynamic counters */
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0ff, #b77cff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<canvas id="bg-canvas"></canvas>
+
+<!-- Hero Section - Fullscreen Interactive -->
+<section id="home" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative;">
+    <div class="glass-panel" style="padding: 3rem; max-width: 950px; width: 90%; z-index: 10;">
+        <div style="position: relative; width: 160px; height: 160px; margin: 0 auto 1.5rem;">
+            <div style="width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(135deg, #0ff, #7a2be2); padding: 3px;">
+                <img src="https://randomuser.me/api/portraits/men/95.jpg" alt="Avatar" style="width:100%; height:100%; border-radius: 50%; object-fit: cover; border: 2px solid #000;">
+            </div>
+            <div style="position: absolute; inset: -8px; border-radius: 50%; background: radial-gradient(circle, cyan, transparent); opacity: 0.5; filter: blur(12px);"></div>
+        </div>
+        <h1 class="neon-glow-text" style="font-size: 3.5rem; font-weight: 700;">Ethan <span style="color:white;">Reyes</span></h1>
+        <div style="font-size: 1.6rem; margin: 1.2rem 0; height: 80px;">
+            <span id="dynamic-role" style="border-right: 2px solid cyan; padding-right: 8px;"></span>
+        </div>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <button class="btn-neon" id="hireScrollBtn"><i class="fas fa-calendar-check"></i> Hire Me</button>
+            <button class="btn-outline-cyan" id="projectsScrollBtn"><i class="fas fa-cube"></i> View Projects</button>
+            <button class="btn-outline-cyan" id="resumeBtn"><i class="fas fa-file-pdf"></i> Download Resume</button>
+        </div>
+    </div>
+    <div style="position: absolute; bottom: 30px; left: 0; right: 0; text-align: center; animation: bounce 2s infinite;"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<!-- Skills: 3D Rotating Sphere + Radar + Live Terminal -->
+<section id="skills">
+    <h2 class="neon-glow-text" style="font-size: 2.8rem; text-align: center;"><i class="fas fa-microchip"></i> Neural Core Skills</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 3rem;">
+        <div class="glass-panel" style="padding: 1rem;">
+            <h3><i class="fas fa-globe"></i> 4D Tech Sphere</h3>
+            <div id="tech-sphere-container"></div>
+        </div>
+        <div class="glass-panel" style="padding: 1.5rem;">
+            <h3><i class="fas fa-chart-pie"></i> Quantum Radar</h3>
+            <canvas id="radarChartCanvas" width="400" height="350" style="width:100%; max-width: 400px; background: rgba(0,0,0,0.4); border-radius: 24px;"></canvas>
+        </div>
+        <div class="glass-panel code-window" style="padding: 1.5rem;">
+            <h3><i class="fas fa-terminal"></i> Live AI Terminal</h3>
+            <div style="background:#010212; padding: 1rem; border-radius: 1rem; font-family: monospace;">
+                <pre id="terminalAnim" style="color:#0f0; font-size: 0.8rem;">> Initializing quantum core...\n> Loading skills matrix: ▰▰▰▰▰▰▰▰▰▰ 100%</pre>
+            </div>
+            <div class="floating-tech-icons" style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px; justify-content: center;">
+                <i class="fab fa-html5" style="font-size: 2rem; color:#e44d26;"></i> <i class="fab fa-css3-alt" style="font-size:2rem; color:#264de4;"></i> <i class="fab fa-js" style="font-size:2rem; color:#f7df1e;"></i>
+                <i class="fab fa-react" style="font-size:2rem; color:#61dafb;"></i> <i class="fab fa-node-js" style="font-size:2rem; color:#8cc84b;"></i> <i class="fab fa-python" style="font-size:2rem; color:#3776ab;"></i>
+                <i class="fab fa-aws" style="font-size:2rem; color:#ff9900;"></i> <i class="fab fa-docker" style="font-size:2rem; color:#2496ed;"></i> <i class="fas fa-brain" style="font-size:2rem; color:#ff44cc;"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Timeline + Achievements -->
+<section id="experience">
+    <h2 class="neon-glow-text" style="font-size: 2.8rem; text-align: center;"><i class="fas fa-chart-line"></i> Hyperion Timeline</h2>
+    <div class="glass-panel timeline-future" style="padding: 2rem; margin-top: 2rem;">
+        <div class="timeline-node">
+            <h3>🔮 Principal AI Architect @ <span style="color:cyan;">Nexus Dynamics</span></h3>
+            <p>2024 - Present | Leading 15+ AI agents, LLM fine-tuning, GPU clusters | Impact: <span class="dynamic-counter" data-val="340">0</span>% efficiency boost</p>
+        </div>
+        <div class="timeline-node">
+            <h3>⚡ Senior Full Stack / Cloud Lead @ <span style="color:cyan;">Stratos Corp</span></h3>
+            <p>2022 - 2024 | Microservices & Kubernetes, handled <span class="dynamic-counter" data-val="250">0</span>M+ API requests monthly</p>
+        </div>
+        <div class="timeline-node">
+            <h3>🚀 DevOps & Security Engineer @ <span style="color:cyan;">AetherSec</span></h3>
+            <p>2020 - 2022 | Automated CICD pipelines, reduced deployment time by <span class="dynamic-counter" data-val="78">0</span>%</p>
+        </div>
+        <div style="display: flex; gap: 2rem; justify-content: space-between; flex-wrap: wrap; margin-top: 2rem;">
+            <div><i class="fas fa-rocket"></i> Projects Shipped: <span class="dynamic-counter" data-val="58">0</span>+</div>
+            <div><i class="fas fa-trophy"></i> Awards: <span class="dynamic-counter" data-val="12">0</span></div>
+            <div><i class="fas fa-code-branch"></i> GitHub Commits: <span class="dynamic-counter" data-val="4670">0</span>k+</div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects with filter & 3D hover & video preview simulation -->
+<section id="projects">
+    <h2 class="neon-glow-text" style="text-align: center; font-size: 2.8rem;">✨ Holo Projects</h2>
+    <div style="display: flex; justify-content: center; gap: 1rem; margin: 2rem 0;">
+        <button class="filter-proj-btn active" data-filter="all">All</button>
+        <button class="filter-proj-btn" data-filter="ai">AI/ML</button>
+        <button class="filter-proj-btn" data-filter="fullstack">Full Stack</button>
+        <button class="filter-proj-btn" data-filter="cloud">Cloud/DevOps</button>
+    </div>
+    <div id="dynamic-projects" class="grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(310px,1fr)); gap: 2rem;"></div>
+</section>
+
+<!-- Interactive Coding Lab with Real Code Runner + Heatmap + Stats -->
+<section id="coding-lab">
+    <h2 class="neon-glow-text" style="font-size: 2.3rem;"><i class="fas fa-laptop-code"></i> Quantum Code Lab</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.8rem; margin-top: 2rem;">
+        <div class="glass-panel" style="padding: 1.5rem;">
+            <h3>⚡ Live Simulator (JS)</h3>
+            <textarea id="liveCodeEditor" rows="5" style="width:100%; background:#030617; color:#0f0; border:1px solid cyan; border-radius: 12px; font-family: monospace;">// AI-powered function\nconst greet = () => "Hello Metaverse";\ngreet();</textarea>
+            <button id="execCodeBtn" class="btn-neon" style="margin-top: 12px; width:100%;">▶ Execute</button>
+            <pre id="codeResult" style="background:#000; padding: 10px; border-radius: 12px; margin-top: 12px;"></pre>
+        </div>
+        <div class="glass-panel">
+            <h3><i class="fab fa-github-alt"></i> Contribution Nebula</h3>
+            <div id="dynamicHeatmap" style="display: grid; grid-template-columns: repeat(27,1fr); gap: 4px; padding: 1rem;"></div>
+        </div>
+        <div class="glass-panel">
+            <h3>📊 Dev Dashboard AI</h3>
+            <div><i class="fas fa-chart-simple"></i> Total Contributions: <strong>2,847</strong></div>
+            <div><i class="fas fa-fire"></i> Current Streak: 32 days</div>
+            <div><i class="fas fa-brain"></i> AI Models Trained: 14</div>
+            <div style="margin-top: 12px;">Productivity Score: <progress value="92" max="100" style="width:100%; height:8px; border-radius:10px;"></progress></div>
+        </div>
+    </div>
+</section>
+
+<!-- Services & Booking Hybrid -->
+<section id="services">
+    <h2 class="neon-glow-text" style="text-align: center;">🔧 Cyber Services</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
+        <div class="glass-panel" style="padding: 1.5rem; text-align: center;"><i class="fas fa-globe" style="font-size: 2.5rem;"></i><h4>Web3 Development</h4></div>
+        <div class="glass-panel" style="padding: 1.5rem; text-align: center;"><i class="fas fa-cloud-upload-alt"></i><h4>Cloud Native</h4></div>
+        <div class="glass-panel" style="padding: 1.5rem; text-align: center;"><i class="fas fa-robot"></i><h4>Generative AI</h4></div>
+        <div class="glass-panel" style="padding: 1.5rem; text-align: center;"><i class="fas fa-shield-virus"></i><h4>Cyber Resilience</h4></div>
+    </div>
+</section>
+
+<!-- Testimonials Slider + Booking form -->
+<section id="testimonials">
+    <div class="glass-panel" style="padding: 2rem; text-align: center;">
+        <h2><i class="fas fa-comment-dots"></i> Neural Endorsements</h2>
+        <div id="testimonialCarousel" style="display: flex; overflow-x: auto; gap: 1.5rem; scroll-snap-type: x mandatory; margin-top: 1.5rem;">
+            <div class="glass-panel" style="min-width: 280px; scroll-snap-align: start;"><i class="fas fa-star"></i> ⭐⭐⭐⭐⭐ "Ethan built our AI infrastructure in record time." - CTO, OmniTech</div>
+            <div class="glass-panel" style="min-width: 280px;"><i class="fas fa-star"></i> ⭐⭐⭐⭐⭐ "Master of full-stack & cloud. Revolutionary design thinking."</div>
+            <div class="glass-panel" style="min-width: 280px;"><i class="fas fa-star"></i> ⭐⭐⭐⭐⭐ "His portfolio speaks future. Hired immediately!"</div>
+        </div>
+    </div>
+</section>
+
+<section id="booking-contact" style="padding-top: 0;">
+    <div class="glass-panel" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; padding: 2rem;">
+        <div style="flex: 1;">
+            <h3>📅 Schedule a Meeting</h3>
+            <input type="text" placeholder="Name" style="width:100%; background:#0a0f2a; border:1px solid cyan; padding: 12px; border-radius: 30px; margin: 8px 0; color: white;">
+            <input type="email" placeholder="Email" style="width:100%; background:#0a0f2a; border:1px solid cyan; padding: 12px; border-radius: 30px; margin: 8px 0;">
+            <input type="date" style="width:100%; background:#0a0f2a; border:1px solid cyan; padding: 12px; border-radius: 30px;">
+            <button class="btn-neon" style="margin-top: 12px;">Book Consultation <i class="fab fa-calendar-alt"></i></button>
+        </div>
+        <div style="flex: 1; text-align: center;">
+            <h3>Connect NeuroLink</h3>
+            <div style="font-size: 2rem; gap: 1rem; display: flex; justify-content: center;"><i class="fab fa-linkedin"></i> <i class="fab fa-github"></i> <i class="fab fa-twitter"></i> <i class="fab fa-whatsapp"></i></div>
+            <p><i class="fas fa-map-marker-alt"></i> San Francisco / Remote</p>
+            <button id="themeToggleBtn" style="background: cyan; border-radius: 40px; border: none; padding: 8px 18px;">🌗 Dark/Light Shift</button>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+    // --- BACKGROUND 3D PARTICLES (advanced) ---
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    class Particle { constructor() { this.x = Math.random() * width; this.y = Math.random() * height; this.radius = Math.random() * 2 + 1; this.speedX = (Math.random() - 0.5) * 0.8; this.speedY = (Math.random() - 0.5) * 0.5; this.color = `rgba(0, 200, 255, ${Math.random() * 0.4})`; } update() { this.x += this.speedX; this.y += this.speedY; if(this.x < 0) this.x = width; if(this.x > width) this.x = 0; if(this.y < 0) this.y = height; if(this.y > height) this.y = 0; } draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); ctx.fillStyle = this.color; ctx.fill(); } }
+    for(let i=0;i<150;i++) particles.push(new Particle());
+    function animateBG() { requestAnimationFrame(animateBG); ctx.clearRect(0,0,width,height); particles.forEach(p => { p.update(); p.draw(); }); }
+    animateBG();
+
+    // Dynamic Typing Effect (more roles)
+    const rolesList = ["Software Engineer 🚀", "Full Stack Alchemist ⚛️", "Cloud Architect ☁️", "AI & ML Visionary 🧠", "Quantum Dev 🔮"];
+    let roleIndex=0, charIndex=0, isDeletingRole=false;
+    const roleSpan = document.getElementById('dynamic-role');
+    function animateRole() { let current = rolesList[roleIndex]; if(isDeletingRole) charIndex--; else charIndex++; roleSpan.innerText = current.substring(0,charIndex); if(!isDeletingRole && charIndex===current.length) { isDeletingRole=true; setTimeout(animateRole,1800); return; } if(isDeletingRole && charIndex===0) { isDeletingRole=false; roleIndex=(roleIndex+1)%rolesList.length; setTimeout(animateRole,200); return; } setTimeout(animateRole, isDeletingRole?50:100); }
+    animateRole();
+
+    // 3D Sphere Advanced with Three.js
+    const container = document.getElementById('tech-sphere-container');
+    const threeScene = new THREE.Scene(); threeScene.background = null;
+    const threeCam = new THREE.PerspectiveCamera(45, container.clientWidth/container.clientHeight, 0.1, 1000);
+    const threeRenderer = new THREE.WebGLRenderer({ alpha: true }); threeRenderer.setSize(container.clientWidth, container.clientHeight); container.appendChild(threeRenderer.domElement);
+    const sphereGeo = new THREE.SphereGeometry(1.2, 80, 80);
+    const sphereMat = new THREE.MeshStandardMaterial({ color: 0x2a6eff, emissive: 0x0a3aff, roughness: 0.2, metalness: 0.9 });
+    const coreSphere = new THREE.Mesh(sphereGeo, sphereMat); threeScene.add(coreSphere);
+    const wireframeMat = new THREE.MeshBasicMaterial({ color: 0x0ff, wireframe: true, transparent: true, opacity: 0.3 });
+    const wireframeSphere = new THREE.Mesh(sphereGeo, wireframeMat); threeScene.add(wireframeSphere);
+    const ambientLight = new THREE.AmbientLight(0x404060); threeScene.add(ambientLight);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1); dirLight.position.set(2,5,3); threeScene.add(dirLight);
+    const backLight = new THREE.PointLight(0x2266ff, 0.6); backLight.position.set(-2,1,-3); threeScene.add(backLight);
+    threeCam.position.z = 3.2;
+    function animate3D() { requestAnimationFrame(animate3D); coreSphere.rotation.y += 0.008; coreSphere.rotation.x += 0.005; wireframeSphere.rotation.y += 0.008; wireframeSphere.rotation.x += 0.005; threeRenderer.render(threeScene, threeCam); }
+    animate3D();
+    window.addEventListener('resize', ()=> { threeRenderer.setSize(container.clientWidth, container.clientHeight); threeCam.aspect = container.clientWidth/container.clientHeight; threeCam.updateProjectionMatrix(); });
+
+    // Radar Chart
+    const radarCtx = document.getElementById('radarChartCanvas').getContext('2d');
+    new Chart(radarCtx, { type: 'radar', data: { labels: ['React/Next','Node.js','Python','AWS/Azure','K8s','LangChain'], datasets: [{ label: 'Proficiency', data: [96,89,94,91,88,97], backgroundColor: 'rgba(0,200,255,0.3)', borderColor: '#0ff', pointBackgroundColor: '#0ff' }] }, options: { responsive: true, maintainAspectRatio: true, scales: { r: { ticks: { backdropColor: 'transparent', color: 'white' }, angleLines: { color: '#0ff' }, grid: { color: 'rgba(0,255,255,0.2)' } } } } });
+
+    // Projects Data
+    const projectsList = [
+        { name: "NexusGPT - LLM Platform", category: "ai", desc: "Fine-tuned Llama 3 model, real-time inference", tech: "Python, FastAPI, React", demoLink: "#", gitLink: "#" },
+        { name: "CloudSphere Orchestrator", category: "cloud", desc: "K8s operator + Terraform, auto-scaling", tech: "Go, AWS, CDK", demoLink: "#", gitLink: "#" },
+        { name: "NeuroLens Analytics", category: "fullstack", desc: "AI-driven fullstack dashboard", tech: "Next.js, TensorFlow.js", demoLink: "#", gitLink: "#" },
+        { name: "Quantum Portfolio 4D", category: "fullstack", desc: "Three.js + GSAP + WebGL", tech: "Three.js, React", demoLink: "#", gitLink: "#" }
+    ];
+    function renderProjectCards(filter) { const containerProj = document.getElementById('dynamic-projects'); containerProj.innerHTML = ""; projectsList.filter(p => filter === "all" || p.category === filter).forEach(p => { const card = document.createElement('div'); card.className = "project-card-3d"; card.style.padding = "1.5rem"; card.innerHTML = `<h3><i class="fas fa-microchip"></i> ${p.name}</h3><p>${p.desc}</p><div style="margin:8px 0">${p.tech}</div><div style="display:flex; gap:12px;"><button class="btn-outline-cyan" style="padding:6px 12px;">Demo</button><button class="btn-outline-cyan" style="padding:6px 12px;">GitHub</button></div>`; containerProj.appendChild(card); }); }
+    renderProjectCards('all');
+    document.querySelectorAll('.filter-proj-btn').forEach(btn => { btn.addEventListener('click', (e) => { document.querySelectorAll('.filter-proj-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderProjectCards(btn.dataset.filter); }); });
+
+    // live code execution
+    document.getElementById('execCodeBtn').addEventListener('click', () => { const code = document.getElementById('liveCodeEditor').value; try { const res = eval(code); document.getElementById('codeResult').innerText = String(res); } catch(e) { document.getElementById('codeResult').innerText = "Error: " + e.message; } });
+    // Heatmap dynamic
+    const heatmapDiv = document.getElementById('dynamicHeatmap'); for(let i=0;i<189;i++){ const intensity = Math.random() > 0.7 ? 3 : Math.random() > 0.4 ? 2 : 1; const colors = ['#0a2f2f','#1f6e43','#2ecc71','#48f0a0']; const cell = document.createElement('div'); cell.style.width='14px'; cell.style.height='14px'; cell.style.backgroundColor=colors[intensity-1]; cell.style.borderRadius='4px'; heatmapDiv.appendChild(cell); }
+    // Counters animation with GSAP ScrollTrigger
+    const counters = document.querySelectorAll('.dynamic-counter');
+    function startCounters() { counters.forEach(c => { let target = parseInt(c.dataset.val); let current = 0; let interval = setInterval(()=>{ if(current < target) { current += Math.ceil(target/50); c.innerText = current; } else { c.innerText = target; clearInterval(interval); } }, 30); }); }
+    ScrollTrigger.create({ trigger: "#experience", start: "top 70%", onEnter: startCounters });
+    // Auto scroll buttons
+    document.getElementById('hireScrollBtn').onclick = () => document.getElementById('booking-contact').scrollIntoView({behavior:'smooth'});
+    document.getElementById('projectsScrollBtn').onclick = () => document.getElementById('projects').scrollIntoView({behavior:'smooth'});
+    document.getElementById('resumeBtn').onclick = () => alert("📄 Resume.pdf (Simulated) - Ethan Reyes Full CV available.");
+    // Mouse cursor effect
+    const glow = document.getElementById('cursorGlow'), dotCursor = document.getElementById('cursorDot');
+    document.addEventListener('mousemove', (e) => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; dotCursor.style.left = e.clientX + 'px'; dotCursor.style.top = e.clientY + 'px'; });
+    // Theme toggle
+    let darkTheme = true;
+    document.getElementById('themeToggleBtn').addEventListener('click', () => { document.body.style.backgroundColor = darkTheme ? "#f5f9ff" : "#010104"; document.body.style.color = darkTheme ? "#111" : "#eef5ff"; darkTheme = !darkTheme; });
+    // Terminal animation simulation
+    let terminalLines = ["> Initializing quantum core...", "> Loading skills matrix: Complete", "> Deploying AI models: 12 active", "> System ready: NeuralSync Online"];
+    let lineIdx = 0;
+    setInterval(()=>{ document.getElementById('terminalAnim').innerText = terminalLines[lineIdx % terminalLines.length]; lineIdx++; }, 2800);
+    // Auto sliding testimonials
+    const tSlider = document.getElementById('testimonialCarousel');
+    setInterval(()=>{ if(tSlider.scrollLeft + tSlider.clientWidth < tSlider.scrollWidth) tSlider.scrollLeft += 300; else tSlider.scrollLeft = 0; }, 3800);
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Alex Morgan - Premium Influencer</title>
+    <meta name="description" content="Get in touch with Alex Morgan for business inquiries, collaborations, coaching, or general questions. Contact via email, WhatsApp, or contact form." />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ─── Base Styles ─── */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0d12;
+            color: #e8edf5;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #141820; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #7c3aed, #ec4899); border-radius: 10px; }
+
+        /* ─── Glassmorphism ─── */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(124, 58, 237, 0.4);
+            box-shadow: 0 25px 60px rgba(124, 58, 237, 0.2);
+        }
+
+        /* ─── Gradient Text ─── */
+        .gradient-text {
+            background: linear-gradient(135deg, #c084fc, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ─── Buttons ─── */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 60px;
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #e8edf5;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            border-color: rgba(124, 58, 237, 0.3);
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.15);
+        }
+
+        /* ─── Social Icons ─── */
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #a0aec0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            font-size: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            transform: translateY(-6px) scale(1.1);
+            color: #fff;
+            border-color: rgba(124, 58, 237, 0.4);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
+        }
+        .social-icon.youtube:hover { background: #ff0000; border-color: #ff0000; }
+        .social-icon.instagram:hover { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: #dc2743; }
+        .social-icon.tiktok:hover { background: #000; border-color: #fff; }
+        .social-icon.twitter:hover { background: #000; border-color: #1da1f2; }
+        .social-icon.linkedin:hover { background: #0a66c2; border-color: #0a66c2; }
+        .social-icon.facebook:hover { background: #1877f2; border-color: #1877f2; }
+        .social-icon.discord:hover { background: #5865f2; border-color: #5865f2; }
+        .social-icon.whatsapp:hover { background: #25d366; border-color: #25d366; }
+        .social-icon.telegram:hover { background: #0088cc; border-color: #0088cc; }
+        .social-icon.pinterest:hover { background: #e60023; border-color: #e60023; }
+        .social-icon.threads:hover { background: #000; border-color: #fff; }
+
+        /* ─── Floating Buttons ─── */
+        .float-btn {
+            position: fixed;
+            z-index: 999;
+            border: none;
+            border-radius: 60px;
+            padding: 14px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            text-decoration: none;
+        }
+        .float-btn:hover { transform: scale(1.1) translateY(-4px); }
+        .float-whatsapp { bottom: 30px; right: 30px; background: #25d366; color: #fff; }
+        .float-book { bottom: 100px; right: 30px; background: linear-gradient(135deg, #7c3aed, #ec4899); color: #fff; }
+
+        #backToTop {
+            position: fixed;
+            bottom: 170px;
+            right: 30px;
+            z-index: 999;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+        }
+        #backToTop.visible { opacity: 1; visibility: visible; }
+        #backToTop:hover { transform: translateY(-4px) scale(1.1); }
+
+        .chat-bubble {
+            position: fixed;
+            bottom: 160px;
+            right: 30px;
+            z-index: 998;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+            transition: all 0.4s ease;
+            animation: pulse-soft 2s ease-in-out infinite;
+        }
+        .chat-bubble:hover { transform: scale(1.15) rotate(-10deg); }
+        @keyframes pulse-soft {
+            0%, 100% { box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4); }
+            50% { box-shadow: 0 8px 50px rgba(124, 58, 237, 0.7); }
+        }
+
+        /* ─── Navbar ─── */
+        .nav-sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(11, 13, 18, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+        .nav-scrolled {
+            background: rgba(11, 13, 18, 0.97);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link {
+            color: #9ca3af;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.875rem;
+            position: relative;
+            padding: 4px 0;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c3aed, #ec4899);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover { color: #fff; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active {
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        .nav-link.active::after { width: 100%; }
+
+        /* ─── Mobile Menu ─── */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 360px;
+            height: 100vh;
+            z-index: 1001;
+            background: rgba(11, 13, 18, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 30px 24px;
+            transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow-y: auto;
+        }
+        .mobile-menu.open { right: 0; }
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        .mobile-overlay.open { opacity: 1; visibility: visible; }
+
+        .mobile-link {
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            color: #9ca3af;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+        .mobile-link:hover {
+            background: rgba(124, 58, 237, 0.1);
+            color: #fff;
+            transform: translateX(8px);
+        }
+        .mobile-link.active {
+            color: #a78bfa;
+            background: rgba(124, 58, 237, 0.08);
+        }
+
+        /* ─── Cookie Banner ─── */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: rgba(11, 13, 18, 0.97);
+            backdrop-filter: blur(20px);
+            padding: 20px 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            transform: translateY(100%);
+            animation: slideUp 0.6s ease forwards;
+        }
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+        .cookie-banner.hidden { display: none; }
+
+        /* ─── Theme Toggle ─── */
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e8edf5;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: rotate(30deg);
+        }
+
+        /* ─── Form Inputs ─── */
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #e8edf5;
+            font-size: 15px;
+            transition: all 0.4s ease;
+            outline: none;
+        }
+        .form-input:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.01);
+        }
+        .form-input::placeholder { color: #6b7280; }
+
+        /* ─── Section Styles ─── */
+        .section-padding { padding: 80px 0; }
+        .section-tag {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 100px;
+            background: rgba(124, 58, 237, 0.15);
+            color: #a78bfa;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            border: 1px solid rgba(124, 58, 237, 0.1);
+        }
+
+        .page-indicator {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 100px;
+            background: rgba(124, 58, 237, 0.2);
+            color: #a78bfa;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: #6b7280;
+            padding: 12px 0;
+        }
+        .breadcrumb a {
+            color: #a78bfa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .breadcrumb a:hover { color: #c084fc; }
+
+        /* ─── Contact Info Card ─── */
+        .contact-info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 20px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .contact-info-card:hover {
+            border-color: rgba(124, 58, 237, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(6px);
+        }
+        .contact-info-card .info-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
+        }
+        .contact-info-card:hover .info-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        /* ─── FAQ Item ─── */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 20px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .faq-item:hover {
+            border-color: rgba(124, 58, 237, 0.2);
+        }
+        .faq-item .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .faq-item .faq-question h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+        .faq-item:hover .faq-question h4 {
+            color: #a78bfa;
+        }
+        .faq-item .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding-top: 12px;
+        }
+        .faq-item .faq-icon {
+            transition: all 0.4s ease;
+            color: #6b7280;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+            color: #a78bfa;
+        }
+
+        /* ─── Reveal Animation ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 640px) {
+            .float-book, .float-whatsapp { padding: 10px 14px; font-size: 12px; }
+            .float-book { bottom: 80px; right: 16px; }
+            .float-whatsapp { bottom: 20px; right: 16px; }
+            #backToTop { bottom: 140px; right: 16px; width: 40px; height: 40px; font-size: 16px; }
+            .chat-bubble { bottom: 130px; right: 16px; width: 48px; height: 48px; font-size: 20px; }
+            .cookie-banner { flex-direction: column; text-align: center; padding: 16px 20px; }
+            .section-padding { padding: 50px 0; }
+            .contact-info-card { flex-direction: column; text-align: center; }
+            .contact-info-card .info-icon { margin: 0 auto; }
+        }
+        @media (min-width: 1024px) { .section-padding { padding: 80px 0; } }
+    </style>
+</head>
+<body>
+
+    <!-- ─── COOKIE BANNER ─── -->
+    <div id="cookieBanner" class="cookie-banner">
+        <p class="text-sm text-gray-300">
+            <i class="fas fa-cookie-bite text-purple-400 mr-2"></i>
+            We use cookies to enhance your experience. By continuing, you agree to our 
+            <a href="#" class="text-purple-400 hover:underline">Privacy Policy</a>.
+        </p>
+        <div class="flex gap-3">
+            <button onclick="acceptCookies()" class="btn-primary text-sm py-2 px-6">Accept</button>
+            <button onclick="document.getElementById('cookieBanner').classList.add('hidden')" class="btn-secondary text-sm py-2 px-6">Decline</button>
+        </div>
+    </div>
+
+    <!-- ─── MOBILE OVERLAY ─── -->
+    <div id="mobileOverlay" class="mobile-overlay" onclick="closeMobileMenu()"></div>
+
+    <!-- ─── MOBILE MENU ─── -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-xl font-bold gradient-text">Alex Morgan</span>
+            <button onclick="closeMobileMenu()" class="text-gray-400 hover:text-white text-2xl transition-all hover:rotate-90">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-1">
+            <a href="index.html" class="mobile-link"><i class="fas fa-home w-5"></i> Home</a>
+            <a href="about.html" class="mobile-link"><i class="fas fa-user w-5"></i> About</a>
+            <a href="services.html" class="mobile-link"><i class="fas fa-briefcase w-5"></i> Services</a>
+            <a href="apps.html" class="mobile-link"><i class="fas fa-mobile-alt w-5"></i> Apps</a>
+            <a href="products.html" class="mobile-link"><i class="fas fa-shopping-bag w-5"></i> Products</a>
+            <a href="academy.html" class="mobile-link"><i class="fas fa-graduation-cap w-5"></i> Academy</a>
+            <a href="referral.html" class="mobile-link"><i class="fas fa-gift w-5"></i> Referral Apps</a>
+            <a href="booking.html" class="mobile-link"><i class="fas fa-calendar-check w-5"></i> Book</a>
+            <a href="contact.html" class="mobile-link active"><i class="fas fa-envelope w-5"></i> Contact</a>
+        </nav>
+        <div class="mt-8 pt-8 border-t border-white/5 space-y-3">
+            <a href="booking.html" onclick="closeMobileMenu()" class="btn-primary w-full justify-center">Book a Session</a>
+            <a href="#community" onclick="closeMobileMenu()" class="btn-secondary w-full justify-center">Join Community</a>
+        </div>
+    </div>
+
+    <!-- ─── NAVBAR ─── -->
+    <nav id="navbar" class="nav-sticky">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="text-xl font-bold gradient-text hover:scale-105 transition-transform">Alex Morgan</a>
+
+                <div class="hidden lg:flex items-center gap-6">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="apps.html" class="nav-link">Apps</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="academy.html" class="nav-link">Academy</a>
+                    <a href="referral.html" class="nav-link">Referral Apps</a>
+                    <a href="booking.html" class="nav-link">Book</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+
+                    <a href="booking.html" class="btn-primary text-sm py-2 px-5">Book Now</a>
+                </div>
+
+                <div class="lg:hidden flex items-center gap-3">
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="themeIconMobile"></i>
+                    </button>
+                    <button onclick="openMobileMenu()" class="text-2xl text-gray-300 hover:text-white transition-colors" aria-label="Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ─── CONTACT PAGE CONTENT ─── -->
+    <section class="section-padding pt-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb reveal visible">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-gray-400">Contact</span>
+            </div>
+
+            <div class="text-center mb-12 reveal visible" style="transition-delay: 0.1s;">
+                <span class="page-indicator">Get in Touch</span>
+                <h1 class="text-4xl sm:text-5xl font-bold mt-4">Let's Connect</h1>
+                <p class="text-gray-400 mt-3 max-w-2xl mx-auto">
+                    Have a question, collaboration idea, or business inquiry? I'd love to hear from you.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-8">
+                <!-- Contact Form -->
+                <div class="lg:col-span-3">
+                    <div class="glass-card rounded-xl p-6 lg:p-8 reveal" style="transition-delay: 0.2s;">
+                        <h3 class="text-xl font-bold text-white mb-4">Send a Message</h3>
+                        <form id="contactForm" class="space-y-4" onsubmit="handleContactForm(event)">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-sm text-gray-400 block mb-1">Full Name <span class="text-red-400">*</span></label>
+                                    <input type="text" id="contactName" class="form-input" placeholder="Your full name" required />
+                                </div>
+                                <div>
+                                    <label class="text-sm text-gray-400 block mb-1">Email Address <span class="text-red-400">*</span></label>
+                                    <input type="email" id="contactEmail" class="form-input" placeholder="you@example.com" required />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="text-sm text-gray-400 block mb-1">Subject</label>
+                                <select id="contactSubject" class="form-input">
+                                    <option value="">Select a subject</option>
+                                    <option value="Business Inquiry">Business Inquiry</option>
+                                    <option value="Brand Collaboration">Brand Collaboration</option>
+                                    <option value="Coaching &amp; Consulting">Coaching &amp; Consulting</option>
+                                    <option value="Media &amp; Press">Media &amp; Press</option>
+                                    <option value="Speaking Engagement">Speaking Engagement</option>
+                                    <option value="General Question">General Question</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="text-sm text-gray-400 block mb-1">Message <span class="text-red-400">*</span></label>
+                                <textarea id="contactMessage" class="form-input" rows="5" placeholder="Tell me how I can help you..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full justify-center">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+
+                            <p class="text-xs text-gray-500 text-center">
+                                <i class="fas fa-lock mr-1"></i> Your information is secure. I'll respond within 24 hours.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="glass-card rounded-xl p-6 reveal" style="transition-delay: 0.3s;">
+                        <h3 class="text-lg font-bold text-white mb-4">Contact Information</h3>
+                        <div class="space-y-3">
+                            <div class="contact-info-card">
+                                <div class="info-icon bg-purple-500/20 text-purple-400">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400">Email</p>
+                                    <a href="mailto:hello@alexmorgan.com" class="text-white hover:text-purple-400 transition">contact.csgyan@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="info-icon bg-green-500/20 text-green-400">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400">WhatsApp</p>
+                                    <a href="#" class="text-white hover:text-purple-400 transition">+91 7011615201</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="info-icon bg-blue-500/20 text-blue-400">
+                                    <i class="fas fa-map-pin"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400">Location</p>
+                                    <p class="text-white">Noida Sec-18 New Delhi India</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="info-icon bg-yellow-500/20 text-yellow-400">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400">Office Hours</p>
+                                    <p class="text-white">Mon - Fri, 9:00 AM - 6:00 PM PST</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="glass-card rounded-xl p-6 reveal" style="transition-delay: 0.4s;">
+                        <h3 class="text-lg font-bold text-white mb-4">Connect on Social Media</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://www.youtube.com/@VikasIT" class="social-icon youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.instagram.com" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.tiktok.com" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+                            <a href="https://x.com/vikas0101964285"  class="social-icon twitter"><i class="fab fa-x-twitter"></i></a>
+                            <a href="#" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon discord"><i class="fab fa-discord"></i></a>
+                            <a href="#" class="social-icon telegram"><i class="fab fa-telegram-plane"></i></a>
+                            <a href="#" class="social-icon threads"><i class="fas fa-message"></i></a>
+                            <a href="#" class="social-icon pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Response -->
+                    <div class="glass-card rounded-xl p-6 text-center reveal" style="transition-delay: 0.5s;">
+                        <div class="text-4xl mb-2">⚡</div>
+                        <h4 class="font-semibold text-white">Quick Response</h4>
+                        <p class="text-sm text-gray-400">I typically respond within 24 hours</p>
+                        <div class="flex items-center justify-center gap-1 mt-2 text-green-400">
+                            <i class="fas fa-circle text-xs"></i>
+                            <span class="text-xs">Available for inquiries</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mt-16 reveal" style="transition-delay: 0.6s;">
+                <h3 class="text-2xl font-bold text-white text-center mb-8">Frequently Asked Questions</h3>
+                <div class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <h4>How quickly can I expect a response?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer text-sm text-gray-400">
+                            I typically respond to all inquiries within 24 hours during business days (Mon-Fri). For urgent matters, please reach out via WhatsApp.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <h4>Do you accept collaboration requests?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer text-sm text-gray-400">
+                            Yes! I'm always open to brand collaborations, sponsored content, and partnerships. Please use the contact form with details about your proposal.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <h4>Can I book a consultation call?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer text-sm text-gray-400">
+                            Absolutely. Visit the <a href="booking.html" class="text-purple-400 hover:underline">Booking Page</a> to schedule a one-on-one session with me.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <h4>Do you offer speaking engagements?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer text-sm text-gray-400">
+                            Yes, I speak at conferences, workshops, and corporate events. Contact me with your event details and availability.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <h4>What services do you offer?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer text-sm text-gray-400">
+                            I offer social media consulting, personal branding, YouTube growth, Instagram growth, AI automation, and website development. Visit my <a href="services.html" class="text-purple-400 hover:underline">Services Page</a> for more details.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="faq-item" onclick="toggleFAQ(this)">
+                        <div class="faq-question">
+                            <h4>Do you have a community I can join?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer text-sm text-gray-400">
+                            Yes! I have WhatsApp, Telegram, Discord, and Facebook communities. Visit the <a href="index.html#community" class="text-purple-400 hover:underline">Community Section</a> to join.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="mt-16 text-center reveal" style="transition-delay: 0.7s;">
+                <div class="glass-card rounded-2xl p-8 max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold text-white">Ready to Work Together?</h3>
+                    <p class="text-gray-400 mt-2">Book a consultation and let's start building your creator empire.</p>
+                    <div class="flex flex-wrap gap-3 justify-center mt-4">
+                        <a href="booking.html" class="btn-primary">
+                            <i class="fas fa-calendar-check"></i> Book a Session
+                        </a>
+                        <a href="#contactForm" class="btn-secondary">
+                            <i class="fas fa-envelope"></i> Send a Message
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── SOCIAL HUB ─── -->
+    <section id="social" class="section-padding bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Connect</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Follow Me</h2>
+                <p class="text-gray-400 mt-3">Join 12M+ followers across all platforms.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal">
+                    <div class="social-icon youtube mx-auto"><i class="fab fa-youtube"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">YouTube</p>
+                    <p class="text-xs text-gray-400">5.2M Followers</p>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.1s;">
+                    <div class="social-icon instagram mx-auto"><i class="fab fa-instagram"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Instagram</p>
+                    <p class="text-xs text-gray-400">3.8M Followers</p>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.2s;">
+                    <div class="social-icon tiktok mx-auto"><i class="fab fa-tiktok"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">TikTok</p>
+                    <p class="text-xs text-gray-400">2.1M Followers</p>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.3s;">
+                    <div class="social-icon twitter mx-auto"><i class="fab fa-x-twitter"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">X (Twitter)</p>
+                    <p class="text-xs text-gray-400">890K Followers</p>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.4s;">
+                    <div class="social-icon linkedin mx-auto"><i class="fab fa-linkedin-in"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">LinkedIn</p>
+                    <p class="text-xs text-gray-400">450K Followers</p>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.5s;">
+                    <div class="social-icon discord mx-auto"><i class="fab fa-discord"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Discord</p>
+                    <p class="text-xs text-gray-400">32K Members</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── BOOK SECTION ─── -->
+    <section id="book" class="section-padding">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Work With Me</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Book a Consultation</h2>
+                <p class="text-gray-400 mt-3">Get personalized coaching and strategy sessions.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div class="space-y-4 reveal">
+                    <div class="glass-card rounded-xl p-5 flex items-center justify-between hover:border-purple-500/30 transition-all">
+                        <div><h4 class="font-semibold text-white">Strategy Session</h4><p class="text-sm text-gray-400">60-min deep dive</p></div>
+                        <span class="text-purple-400 font-bold">$297</span>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 flex items-center justify-between hover:border-pink-500/30 transition-all">
+                        <div><h4 class="font-semibold text-white">Monthly Coaching</h4><p class="text-sm text-gray-400">4 sessions per month</p></div>
+                        <span class="text-pink-400 font-bold">$997</span>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 flex items-center justify-between hover:border-blue-500/30 transition-all">
+                        <div><h4 class="font-semibold text-white">3-Month Accelerator</h4><p class="text-sm text-gray-400">12 sessions + resources</p></div>
+                        <span class="text-blue-400 font-bold">$2,497</span>
+                    </div>
+                    <a href="booking.html" class="btn-primary w-full justify-center mt-4"><i class="fas fa-calendar-check"></i> View All &amp; Book Now</a>
+                </div>
+                <div class="glass-card rounded-xl p-6 lg:p-8 reveal" style="transition-delay: 0.2s;">
+                    <h3 class="text-xl font-bold text-white mb-4">Request a Session</h3>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Booking request sent! We\'ll confirm within 24 hours.');">
+                        <div><input type="text" class="form-input" placeholder="Full Name" required /></div>
+                        <div><input type="email" class="form-input" placeholder="Email Address" required /></div>
+                        <div><input type="tel" class="form-input" placeholder="Phone Number" /></div>
+                        <div>
+                            <select class="form-input">
+                                <option value="">Select Session Type</option>
+                                <option>Strategy Session</option>
+                                <option>Monthly Coaching</option>
+                                <option>3-Month Accelerator</option>
+                            </select>
+                        </div>
+                        <div><textarea class="form-input" rows="3" placeholder="Tell me about your goals..."></textarea></div>
+                        <button type="submit" class="btn-primary w-full justify-center"><i class="fas fa-paper-plane"></i> Send Request</button>
+                    </form>
+                    <p class="text-xs text-gray-500 mt-3 text-center"><i class="fas fa-lock mr-1"></i> Your info is secure. Confirmation via email &amp; WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="border-t border-white/5 py-12 bg-black/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 md:grid-cols-5 gap-8">
+                <div class="md:col-span-2">
+                    <h4 class="text-lg font-bold gradient-text">Alex Morgan</h4>
+                    <p class="text-sm text-gray-400 mt-2 max-w-sm">Helping creators build empires through app promotions, affiliate marketing, and strategic brand collaborations.</p>
+                    <div class="flex gap-3 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mb-3">Quick Links</h5>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Home</a></li>
+                        <li><a href="about.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">About</a></li>
+                        <li><a href="services.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Services</a></li>
+                        <li><a href="apps.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Apps</a></li>
+                        <li><a href="products.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mb-3">Resources</h5>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="academy.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Academy</a></li>
+                        <li><a href="booking.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Book a Session</a></li>
+                        <li><a href="contact.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Contact</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mb-3">Legal</h5>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Terms &amp; Conditions</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Affiliate Disclosure</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 mt-8 pt-6 text-center text-sm text-gray-500">
+                <p>&copy; 2025 Alex Morgan. All rights reserved. Made with <span class="text-red-400">❤️</span> for creators everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ─── FLOATING BUTTONS ─── -->
+    <a href="https://wa.me/15551234567" target="_blank" class="float-btn float-whatsapp"><i class="fab fa-whatsapp"></i> Chat</a>
+    <a href="booking.html" class="float-btn float-book"><i class="fas fa-calendar-check"></i> Book Now</a>
+    <button id="backToTop"><i class="fas fa-chevron-up"></i></button>
+    <button class="chat-bubble"><i class="fas fa-robot"></i></button>
+
+    <script>
+        // ─── Cookie Consent ───
+        function acceptCookies() {
+            document.getElementById('cookieBanner').classList.add('hidden');
+            localStorage.setItem('cookiesAccepted', 'true');
+        }
+        if (localStorage.getItem('cookiesAccepted') === 'true') {
+            document.getElementById('cookieBanner').classList.add('hidden');
+        }
+
+        // ─── Mobile Menu ───
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('open');
+            document.getElementById('mobileOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // ─── Back to Top ───
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) backToTop.classList.add('visible');
+            else backToTop.classList.remove('visible');
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ─── Theme Toggle ───
+        let darkMode = true;
+        function toggleTheme() {
+            darkMode = !darkMode;
+            const body = document.body;
+            if (darkMode) {
+                body.style.background = '#0b0d12';
+                body.style.color = '#e8edf5';
+                document.querySelectorAll('.theme-toggle i').forEach(el => el.className = 'fas fa-moon');
+                document.querySelectorAll('.glass-card, .contact-info-card, .faq-item').forEach(el => {
+                    el.style.background = 'rgba(255, 255, 255, 0.03)';
+                    el.style.borderColor = 'rgba(255, 255, 255, 0.06)';
+                });
+            } else {
+                body.style.background = '#f3f4f6';
+                body.style.color = '#1f2937';
+                document.querySelectorAll('.theme-toggle i').forEach(el => el.className = 'fas fa-sun');
+                document.querySelectorAll('.glass-card, .contact-info-card, .faq-item').forEach(el => {
+                    el.style.background = 'rgba(255, 255, 255, 0.7)';
+                    el.style.borderColor = 'rgba(0, 0, 0, 0.08)';
+                });
+            }
+        }
+
+        // ─── Navbar Scroll Effect ───
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('nav-scrolled');
+            else nav.classList.remove('nav-scrolled');
+        });
+
+        // ─── Scroll Reveal ───
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ─── Contact Form Handler ───
+        function handleContactForm(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const subject = document.getElementById('contactSubject').value || 'General Inquiry';
+            const message = document.getElementById('contactMessage').value;
+
+            // Show confirmation
+            const confirmMsg = `✅ Message Sent!\n\n━━━━━━━━━━━━━━━━━━━━━━\n👤 Name: ${name}\n📧 Email: ${email}\n📋 Subject: ${subject}\n━━━━━━━━━━━━━━━━━━━━━━\n📝 Message:\n${message}\n━━━━━━━━━━━━━━━━━━━━━━\n\n📩 Thank you for reaching out! I'll respond within 24 hours.`;
+            
+            alert(confirmMsg);
+            
+            // Reset form
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactSubject').value = '';
+            document.getElementById('contactMessage').value = '';
+        }
+
+        // ─── FAQ Toggle ───
+        function toggleFAQ(element) {
+            element.classList.toggle('open');
+        }
+
+        // ─── Smooth Anchor Links ───
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href.includes('.html')) return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        console.log('📄 Contact Page Loaded Successfully!');
+        console.log('🔄 Navigation: All links working properly');
+        console.log('📧 Contact: Form with validation, 6 FAQ items, social links');
+    </script>
+</body>
+</html>

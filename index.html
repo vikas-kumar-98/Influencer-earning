@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alex Morgan | Premium Influencer & Digital Entrepreneur</title>
+    <meta name="description" content="Helping creators build empires through app promotions, affiliate marketing, and strategic brand collaborations." />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ─── Base Styles ─── */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0d12;
+            color: #e8edf5;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #141820; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #7c3aed, #ec4899); border-radius: 10px; }
+
+        /* ─── Glassmorphism ─── */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(124, 58, 237, 0.4);
+            box-shadow: 0 25px 60px rgba(124, 58, 237, 0.2);
+        }
+
+        /* ─── Gradient Text ─── */
+        .gradient-text {
+            background: linear-gradient(135deg, #c084fc, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ─── Buttons ─── */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 60px;
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #e8edf5;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            border-color: rgba(124, 58, 237, 0.3);
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.15);
+        }
+
+        /* ─── Social Icons ─── */
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #a0aec0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            font-size: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            transform: translateY(-6px) scale(1.1);
+            color: #fff;
+            border-color: rgba(124, 58, 237, 0.4);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
+        }
+        .social-icon.youtube:hover { background: #ff0000; border-color: #ff0000; }
+        .social-icon.instagram:hover { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: #dc2743; }
+        .social-icon.tiktok:hover { background: #000; border-color: #fff; }
+        .social-icon.twitter:hover { background: #000; border-color: #1da1f2; }
+        .social-icon.linkedin:hover { background: #0a66c2; border-color: #0a66c2; }
+        .social-icon.facebook:hover { background: #1877f2; border-color: #1877f2; }
+        .social-icon.discord:hover { background: #5865f2; border-color: #5865f2; }
+        .social-icon.whatsapp:hover { background: #25d366; border-color: #25d366; }
+        .social-icon.telegram:hover { background: #0088cc; border-color: #0088cc; }
+        .social-icon.pinterest:hover { background: #e60023; border-color: #e60023; }
+
+        /* ─── Floating Buttons ─── */
+        .float-btn {
+            position: fixed;
+            z-index: 999;
+            border: none;
+            border-radius: 60px;
+            padding: 14px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            text-decoration: none;
+        }
+        .float-btn:hover { transform: scale(1.1) translateY(-4px); }
+        .float-whatsapp { bottom: 30px; right: 30px; background: #25d366; color: #fff; }
+        .float-book { bottom: 100px; right: 30px; background: linear-gradient(135deg, #7c3aed, #ec4899); color: #fff; }
+
+        #backToTop {
+            position: fixed;
+            bottom: 170px;
+            right: 30px;
+            z-index: 999;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+        }
+        #backToTop.visible { opacity: 1; visibility: visible; }
+        #backToTop:hover { transform: translateY(-4px) scale(1.1); }
+
+        .chat-bubble {
+            position: fixed;
+            bottom: 160px;
+            right: 30px;
+            z-index: 998;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+            transition: all 0.4s ease;
+            animation: pulse-soft 2s ease-in-out infinite;
+        }
+        .chat-bubble:hover { transform: scale(1.15) rotate(-10deg); }
+        @keyframes pulse-soft {
+            0%, 100% { box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4); }
+            50% { box-shadow: 0 8px 50px rgba(124, 58, 237, 0.7); }
+        }
+
+        /* ─── Navbar ─── */
+        .nav-sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(11, 13, 18, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+        .nav-scrolled {
+            background: rgba(11, 13, 18, 0.97);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link {
+            color: #9ca3af;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.875rem;
+            position: relative;
+            padding: 4px 0;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c3aed, #ec4899);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover { color: #fff; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active {
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        .nav-link.active::after { width: 100%; }
+
+        /* ─── Mobile Menu ─── */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 360px;
+            height: 100vh;
+            z-index: 1001;
+            background: rgba(11, 13, 18, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 30px 24px;
+            transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow-y: auto;
+        }
+        .mobile-menu.open { right: 0; }
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        .mobile-overlay.open { opacity: 1; visibility: visible; }
+
+        .mobile-link {
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            color: #9ca3af;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+        .mobile-link:hover {
+            background: rgba(124, 58, 237, 0.1);
+            color: #fff;
+            transform: translateX(8px);
+        }
+        .mobile-link.active {
+            color: #a78bfa;
+            background: rgba(124, 58, 237, 0.08);
+        }
+
+        /* ─── Cookie Banner ─── */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: rgba(11, 13, 18, 0.97);
+            backdrop-filter: blur(20px);
+            padding: 20px 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            transform: translateY(100%);
+            animation: slideUp 0.6s ease forwards;
+        }
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+        .cookie-banner.hidden { display: none; }
+
+        /* ─── Theme Toggle ─── */
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e8edf5;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: rotate(30deg);
+        }
+
+        /* ─── Form Inputs ─── */
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #e8edf5;
+            font-size: 15px;
+            transition: all 0.4s ease;
+            outline: none;
+        }
+        .form-input:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.01);
+        }
+        .form-input::placeholder { color: #6b7280; }
+
+        /* ─── Section Styles ─── */
+        .section-padding { padding: 80px 0; }
+        .section-tag {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 100px;
+            background: rgba(124, 58, 237, 0.15);
+            color: #a78bfa;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            border: 1px solid rgba(124, 58, 237, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 12px 18px;
+            min-width: 60px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .countdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+        .countdown-item span:first-child { font-size: 1.8rem; font-weight: 700; color: #fff; }
+
+        /* ─── Product/App Cards ─── */
+        .app-card, .product-card, .blog-card, .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .app-card:hover, .product-card:hover, .blog-card:hover, .testimonial-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(124, 58, 237, 0.3);
+            box-shadow: 0 25px 60px rgba(124, 58, 237, 0.15);
+        }
+
+        .gradient-border {
+            position: relative;
+            background: #141820;
+            border-radius: 16px;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 18px;
+            padding: 2px;
+            background: linear-gradient(135deg, #7c3aed, #ec4899, #7c3aed);
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderGlow 4s ease-in-out infinite;
+        }
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
+
+        /* ─── Profile Image Styles ─── */
+        .profile-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 1/1;
+            border-radius: 24px;
+            overflow: hidden;
+            border: .5px solid rgba(124, 58, 237, 0.2);
+            transition: all 0.5s ease;
+        }
+        .profile-image-container:hover {
+            border-color: rgba(124, 58, 237, 0.6);
+            box-shadow: 0 0 60px rgba(124, 58, 237, 0.2);
+            transform: scale(1.02);
+        }
+        .profile-image-container img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        .profile-image-container:hover img {
+            transform: scale(1.05);
+        }
+        .profile-image-container .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .profile-image-container:hover .overlay {
+            opacity: 1;
+        }
+
+        /* ─── Badge Styles ─── */
+        .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge-best { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+        .badge-hot { background: rgba(234, 179, 8, 0.2); color: #facc15; }
+        .badge-new { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .badge-pro { background: rgba(168, 85, 247, 0.2); color: #a78bfa; }
+
+        /* ─── Reveal Animation ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 640px) {
+            .hero-title { font-size: 2.2rem !important; }
+            .stat-number { font-size: 1.8rem; }
+            .float-book, .float-whatsapp { padding: 10px 14px; font-size: 12px; }
+            .float-book { bottom: 80px; right: 16px; }
+            .float-whatsapp { bottom: 20px; right: 16px; }
+            #backToTop { bottom: 140px; right: 16px; width: 40px; height: 40px; font-size: 16px; }
+            .chat-bubble { bottom: 130px; right: 16px; width: 48px; height: 48px; font-size: 20px; }
+            .cookie-banner { flex-direction: column; text-align: center; padding: 16px 20px; }
+            .section-padding { padding: 50px 0; }
+            .profile-image-container { max-width: 280px; }
+        }
+        @media (min-width: 1024px) { .section-padding { padding: 80px 0; } }
+    </style>
+</head>
+<body>
+
+    <!-- ─── COOKIE BANNER ─── -->
+    <div id="cookieBanner" class="cookie-banner">
+        <p class="text-sm text-gray-300">
+            <i class="fas fa-cookie-bite text-purple-400 mr-2"></i>
+            We use cookies to enhance your experience. By continuing, you agree to our 
+            <a href="#" class="text-purple-400 hover:underline">Privacy Policy</a>.
+        </p>
+        <div class="flex gap-3">
+            <button onclick="acceptCookies()" class="btn-primary text-sm py-2 px-6">Accept</button>
+            <button onclick="document.getElementById('cookieBanner').classList.add('hidden')" class="btn-secondary text-sm py-2 px-6">Decline</button>
+        </div>
+    </div>
+
+    <!-- ─── MOBILE OVERLAY ─── -->
+    <div id="mobileOverlay" class="mobile-overlay" onclick="closeMobileMenu()"></div>
+
+    <!-- ─── MOBILE MENU ─── -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-xl font-bold gradient-text">Er Vikas</span>
+            <button onclick="closeMobileMenu()" class="text-gray-400 hover:text-white text-2xl transition-all hover:rotate-90">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-1">
+            <a href="index.html" class="mobile-link active"><i class="fas fa-home w-5"></i> Home</a>
+            <a href="about.html" class="mobile-link"><i class="fas fa-user w-5"></i> About</a>
+            <a href="services.html" class="mobile-link"><i class="fas fa-briefcase w-5"></i> Services</a>
+            <a href="apps.html" class="mobile-link"><i class="fas fa-mobile-alt w-5"></i> Apps</a>
+            <a href="products.html" class="mobile-link"><i class="fas fa-shopping-bag w-5"></i> Products</a>
+            <a href="academy.html" class="mobile-link"><i class="fas fa-graduation-cap w-5"></i> Academy</a>
+            <a href="referral.html" class="mobile-link"><i class="fas fa-gift w-5"></i> Referral Apps</a>
+            <a href="booking.html" class="mobile-link"><i class="fas fa-calendar-check w-5"></i> Book</a>
+            <a href="contact.html" class="mobile-link"><i class="fas fa-envelope w-5"></i> Contact</a>
+        </nav>
+        <div class="mt-8 pt-8 border-t border-white/5 space-y-3">
+            <a href="booking.html" onclick="closeMobileMenu()" class="btn-primary w-full justify-center">Book a Session</a>
+            <a href="#community" onclick="closeMobileMenu()" class="btn-secondary w-full justify-center">Join Community</a>
+        </div>
+    </div>
+
+    <!-- ─── NAVBAR ─── -->
+    <nav id="navbar" class="nav-sticky">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="text-xl font-bold gradient-text hover:scale-105 transition-transform">Er Vikas</a>
+
+                <div class="hidden lg:flex items-center gap-5">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="apps.html" class="nav-link">Apps</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="academy.html" class="nav-link">Academy</a>
+                    <a href="referral.html" class="nav-link">Referral Apps</a>
+                    <a href="booking.html" class="nav-link">Book</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+
+                    <a href="booking.html" class="btn-primary text-sm py-2 px-5">Book Now</a>
+                </div>
+
+                <div class="lg:hidden flex items-center gap-3">
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="themeIconMobile"></i>
+                    </button>
+                    <button onclick="openMobileMenu()" class="text-2xl text-gray-300 hover:text-white transition-colors" aria-label="Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section class="min-h-screen flex items-center relative overflow-hidden pt-20">
+        <div class="absolute inset-0 -z-10">
+            <div class="absolute top-[-40%] left-[-20%] w-[80%] h-[80%] rounded-full bg-purple-600/10 blur-[120px] animate-pulse-slow"></div>
+            <div class="absolute bottom-[-40%] right-[-20%] w-[80%] h-[80%] rounded-full bg-pink-600/10 blur-[120px] animate-pulse-slow" style="animation-delay: 1s;"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal visible">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                        </span>
+                        <span class="text-sm text-purple-400 font-medium">Top 1% Creator</span>
+                    </div>
+                    <h1 class="hero-title text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight">
+                        <span class="text-white">Hey, I'm</span><br />
+                        <span class="gradient-text">Er Vikas Kumar</span>
+                    </h1>
+                    <p class="text-lg text-gray-300 mt-4 max-w-lg leading-relaxed">
+                        Helping creators build empires through app promotions, affiliate marketing,
+                        and strategic brand collaborations. <span class="text-purple-400">12M+</span> community reached.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 mt-8">
+                        <div class="text-center">
+                            <div class="stat-number counter" data-target="12.5" data-suffix="M">0</div>
+                            <p class="text-sm text-gray-400">Followers</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number counter" data-target="850" data-suffix="+">0</div>
+                            <p class="text-sm text-gray-400">Brand Collabs</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number counter" data-target="240" data-suffix="+">0</div>
+                            <p class="text-sm text-gray-400">Clients Helped</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <a href="booking.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Book a Session</a>
+                        <a href="academy.html" class="btn-secondary"><i class="fas fa-play-circle"></i> Watch Content</a>
+                        <a href="#community" class="btn-secondary"><i class="fas fa-users"></i> Join Community</a>
+                    </div>
+                </div>
+                <div class="flex justify-center reveal visible" style="transition-delay: 0.3s;">
+                    <div class="profile-image-container animate-float">
+                        <!-- ════════════════════════════════════════════════ -->
+                        <!-- ★ REPLACE THIS IMAGE URL WITH YOUR PHOTO ★    -->
+                        <!-- ════════════════════════════════════════════════ -->
+                        <img 
+                            src="img/bkt.png" 
+                            alt="Alex Morgan - Premium Influencer"
+                            loading="lazy" style="width: 70%; height: auto;" 
+                        />
+                        <!-- ════════════════════════════════════════════════ -->
+                        <!-- Alternative: Use your own image URL:            -->
+                        <!-- <img src="assets/images/profile.jpg"             -->
+                        <!--      alt="Alex Morgan" loading="lazy" />        -->
+                        <!-- ════════════════════════════════════════════════ -->
+                        
+                        <div class="overlay">
+                            <div class="flex justify-center gap-3">
+                                <span class="px-3 py-1 rounded-full bg-purple-500/80 text-white text-xs">📸 12.5M Followers</span>
+                                <span class="px-3 py-1 rounded-full bg-pink-500/80 text-white text-xs">🎯 Creator Educator</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── SOCIAL STATS ─── -->
+    <section class="py-12 border-y border-white/5 bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6">
+                <div class="text-center reveal"><div class="text-2xl font-bold text-white">5.2M</div><p class="text-xs text-gray-400">YouTube</p></div>
+                <div class="text-center reveal" style="transition-delay: 0.1s;"><div class="text-2xl font-bold text-white">3.8M</div><p class="text-xs text-gray-400">Instagram</p></div>
+                <div class="text-center reveal" style="transition-delay: 0.2s;"><div class="text-2xl font-bold text-white">2.1M</div><p class="text-xs text-gray-400">TikTok</p></div>
+                <div class="text-center reveal" style="transition-delay: 0.3s;"><div class="text-2xl font-bold text-white">890K</div><p class="text-xs text-gray-400">X (Twitter)</p></div>
+                <div class="text-center reveal" style="transition-delay: 0.4s;"><div class="text-2xl font-bold text-white">450K</div><p class="text-xs text-gray-400">LinkedIn</p></div>
+                <div class="text-center reveal" style="transition-delay: 0.5s;"><div class="text-2xl font-bold text-white">1.2M</div><p class="text-xs text-gray-400">Facebook</p></div>
+                <div class="text-center reveal" style="transition-delay: 0.6s;"><div class="text-2xl font-bold text-white">32K</div><p class="text-xs text-gray-400">Discord</p></div>
+                <div class="text-center reveal" style="transition-delay: 0.7s;"><div class="text-2xl font-bold text-white">78K</div><p class="text-xs text-gray-400">Telegram</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── ABOUT PREVIEW ─── -->
+    <section id="about" class="section-padding">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">About Me</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">My Journey &amp; Mission</h2>
+                <p class="text-gray-400 mt-3 max-w-2xl mx-auto">From zero to 12M+ followers — here's how I built my brand.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="reveal">
+                    <p class="text-gray-300 leading-relaxed">
+                        I started my content creation journey in 2018 with nothing but a smartphone and a dream.
+                        Within 18 months, I grew my audience to <span class="text-purple-400 font-semibold">1 million</span>
+                        followers across platforms. Today, I've collaborated with <span class="text-purple-400 font-semibold">850+ brands</span>
+                        including Adobe, Samsung, Spotify, and Nike.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mt-4">
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-sm border border-white/5">🏆 Creator of the Year 2024</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-sm border border-white/5">📺 500M+ Views</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-sm border border-white/5">🌍 50+ Countries</span>
+                    </div>
+                    <a href="about.html" class="inline-flex items-center gap-2 text-purple-400 mt-4 hover:text-purple-300 transition-all hover:gap-3">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="space-y-4 reveal" style="transition-delay: 0.2s;">
+                    <div class="flex gap-4 hover:bg-white/5 p-3 rounded-xl transition-all">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">2018</div>
+                        <div><h4 class="font-semibold text-white">Started Content Creation</h4><p class="text-sm text-gray-400">First YouTube video uploaded</p></div>
+                    </div>
+                    <div class="flex gap-4 hover:bg-white/5 p-3 rounded-xl transition-all">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 font-bold">2020</div>
+                        <div><h4 class="font-semibold text-white">1M Followers</h4><p class="text-sm text-gray-400">Crossed 1M across platforms</p></div>
+                    </div>
+                    <div class="flex gap-4 hover:bg-white/5 p-3 rounded-xl transition-all">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold">2022</div>
+                        <div><h4 class="font-semibold text-white">Launched Coaching</h4><p class="text-sm text-gray-400">Helped 200+ creators</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── SOCIAL HUB ─── -->
+    <section id="social" class="section-padding bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Connect</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Social Media Hub</h2>
+                <p class="text-gray-400 mt-3">Follow me on all platforms and join the conversation.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal">
+                    <div class="social-icon youtube mx-auto"><i class="fab fa-youtube"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">YouTube</p>
+                    <p class="text-xs text-gray-400">5.2M Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.1s;">
+                    <div class="social-icon instagram mx-auto"><i class="fab fa-instagram"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Instagram</p>
+                    <p class="text-xs text-gray-400">3.8M Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.2s;">
+                    <div class="social-icon tiktok mx-auto"><i class="fab fa-tiktok"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">TikTok</p>
+                    <p class="text-xs text-gray-400">2.1M Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.3s;">
+                    <div class="social-icon twitter mx-auto"><i class="fab fa-x-twitter"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">X (Twitter)</p>
+                    <p class="text-xs text-gray-400">890K Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.4s;">
+                    <div class="social-icon linkedin mx-auto"><i class="fab fa-linkedin-in"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">LinkedIn</p>
+                    <p class="text-xs text-gray-400">450K Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.5s;">
+                    <div class="social-icon discord mx-auto"><i class="fab fa-discord"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Discord</p>
+                    <p class="text-xs text-gray-400">32K Members</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Join</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── APPS PREVIEW ─── -->
+    <section id="apps" class="section-padding">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Apps I Recommend</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Tools That Power My Workflow</h2>
+                <p class="text-gray-400 mt-3">Personally tested apps every creator should have.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="app-card reveal">
+                    <div class="flex items-center gap-4"><div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center text-2xl">🎬</div><div><h4 class="font-semibold text-white">CapCut</h4><p class="text-xs text-gray-400">Video Editing</p></div></div>
+                    <p class="text-sm text-gray-300 mt-3">My go-to for editing shorts and reels. Intuitive and powerful.</p>
+                    <div class="flex items-center gap-2 mt-3"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.8</span><span class="text-xs text-gray-400">(2.3M reviews)</span></div>
+                    <a href="apps.html" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition-all hover:gap-3">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="app-card reveal" style="transition-delay: 0.1s;">
+                    <div class="flex items-center gap-4"><div class="w-14 h-14 rounded-xl bg-pink-500/20 flex items-center justify-center text-2xl">📸</div><div><h4 class="font-semibold text-white">Lightroom</h4><p class="text-xs text-gray-400">Photo Editing</p></div></div>
+                    <p class="text-sm text-gray-300 mt-3">Professional-grade photo editing with presets that save hours.</p>
+                    <div class="flex items-center gap-2 mt-3"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.7</span><span class="text-xs text-gray-400">(1.8M reviews)</span></div>
+                    <a href="apps.html" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition-all hover:gap-3">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="app-card reveal" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-4"><div class="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center text-2xl">🤖</div><div><h4 class="font-semibold text-white">ChatGPT</h4><p class="text-xs text-gray-400">AI Assistant</p></div></div>
+                    <p class="text-sm text-gray-300 mt-3">Brainstorming content ideas, scripts, and captions with AI.</p>
+                    <div class="flex items-center gap-2 mt-3"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.9</span><span class="text-xs text-gray-400">(5M+ reviews)</span></div>
+                    <a href="apps.html" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition-all hover:gap-3">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="app-card reveal" style="transition-delay: 0.3s;">
+                    <div class="flex items-center gap-4"><div class="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center text-2xl">📊</div><div><h4 class="font-semibold text-white">Notion</h4><p class="text-xs text-gray-400">Productivity</p></div></div>
+                    <p class="text-sm text-gray-300 mt-3">All-in-one workspace for planning, tracking, and managing.</p>
+                    <div class="flex items-center gap-2 mt-3"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.6</span><span class="text-xs text-gray-400">(1.2M reviews)</span></div>
+                    <a href="apps.html" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition-all hover:gap-3">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── PRODUCTS ─── -->
+    <section id="products" class="section-padding bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Gear &amp; Tools</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Products I Trust</h2>
+                <p class="text-gray-400 mt-3">Every product I recommend has been personally tested.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="product-card relative reveal">
+                    <div class="relative"><div class="w-full aspect-square rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-5xl">📷</div><span class="badge badge-best">BEST SELLER</span></div>
+                    <h4 class="font-semibold text-white mt-3">Sony A7 IV</h4>
+                    <p class="text-sm text-gray-400">Mirrorless Camera</p>
+                    <div class="flex items-center gap-2 mt-1"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.9</span><span class="text-xs text-gray-400">(850 reviews)</span></div>
+                    <div class="flex items-center justify-between mt-3"><span class="text-lg font-bold text-white">$2,498</span><a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a></div>
+                </div>
+                <div class="product-card relative reveal" style="transition-delay: 0.1s;">
+                    <div class="relative"><div class="w-full aspect-square rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-5xl">🎙️</div><span class="badge badge-hot">⚡ HOT</span></div>
+                    <h4 class="font-semibold text-white mt-3">Shure SM7B</h4>
+                    <p class="text-sm text-gray-400">Microphone</p>
+                    <div class="flex items-center gap-2 mt-1"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.8</span><span class="text-xs text-gray-400">(620 reviews)</span></div>
+                    <div class="flex items-center justify-between mt-3"><span class="text-lg font-bold text-white">$399</span><a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a></div>
+                </div>
+                <div class="product-card relative reveal" style="transition-delay: 0.2s;">
+                    <div class="relative"><div class="w-full aspect-square rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-5xl">💻</div><span class="badge badge-pro">PRO</span></div>
+                    <h4 class="font-semibold text-white mt-3">MacBook Pro M3</h4>
+                    <p class="text-sm text-gray-400">Laptop</p>
+                    <div class="flex items-center gap-2 mt-1"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.7</span><span class="text-xs text-gray-400">(1.1k reviews)</span></div>
+                    <div class="flex items-center justify-between mt-3"><span class="text-lg font-bold text-white">$1,999</span><a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a></div>
+                </div>
+                <div class="product-card relative reveal" style="transition-delay: 0.3s;">
+                    <div class="relative"><div class="w-full aspect-square rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-5xl">💡</div><span class="badge badge-new">NEW</span></div>
+                    <h4 class="font-semibold text-white mt-3">Aputure 120D</h4>
+                    <p class="text-sm text-gray-400">Lighting Kit</p>
+                    <div class="flex items-center gap-2 mt-1"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.6</span><span class="text-xs text-gray-400">(340 reviews)</span></div>
+                    <div class="flex items-center justify-between mt-3"><span class="text-lg font-bold text-white">$1,150</span><a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── ACADEMY ─── -->
+    <section id="academy" class="section-padding">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Education</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Social Media Growth Academy</h2>
+                <p class="text-gray-400 mt-3">Actionable strategies to grow your brand across every platform.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <a href="academy.html" class="glass-card rounded-xl p-5 group reveal">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-xl group-hover:bg-purple-500/30 transition">📱</div>
+                    <h4 class="font-semibold text-white mt-3">Instagram Growth</h4>
+                    <p class="text-sm text-gray-400">Reels, Stories, and engagement hacks.</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Learn More →</span>
+                </a>
+                <a href="academy.html" class="glass-card rounded-xl p-5 group reveal" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center text-xl group-hover:bg-red-500/30 transition">▶️</div>
+                    <h4 class="font-semibold text-white mt-3">YouTube Growth</h4>
+                    <p class="text-sm text-gray-400">CTR, retention, and viral strategy.</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Learn More →</span>
+                </a>
+                <a href="academy.html" class="glass-card rounded-xl p-5 group reveal" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-xl group-hover:bg-blue-500/30 transition">👔</div>
+                    <h4 class="font-semibold text-white mt-3">LinkedIn Growth</h4>
+                    <p class="text-sm text-gray-400">Personal branding for professionals.</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Learn More →</span>
+                </a>
+                <a href="academy.html" class="glass-card rounded-xl p-5 group reveal" style="transition-delay: 0.3s;">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-xl group-hover:bg-pink-500/30 transition">🎵</div>
+                    <h4 class="font-semibold text-white mt-3">Reels &amp; Shorts</h4>
+                    <p class="text-sm text-gray-400">Short-form video that converts.</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Learn More →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── BOOK ─── -->
+    <section id="book" class="section-padding bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Work With Me</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Book a Consultation</h2>
+                <p class="text-gray-400 mt-3">One-on-one coaching, strategy sessions, and brand consultations.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-4 reveal">
+                    <div class="glass-card rounded-xl p-5 flex items-center justify-between hover:border-purple-500/30 transition-all">
+                        <div><h4 class="font-semibold text-white">One-on-One Coaching</h4><p class="text-sm text-gray-400">Personalized 60-min session</p></div>
+                        <span class="text-purple-400 font-bold">$197</span>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 flex items-center justify-between hover:border-purple-500/30 transition-all">
+                        <div><h4 class="font-semibold text-white">Creator Strategy Session</h4><p class="text-sm text-gray-400">Content roadmap &amp; audit</p></div>
+                        <span class="text-purple-400 font-bold">$297</span>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 flex items-center justify-between hover:border-purple-500/30 transition-all">
+                        <div><h4 class="font-semibold text-white">Brand Consultation</h4><p class="text-sm text-gray-400">Collaboration &amp; sponsorship strategy</p></div>
+                        <span class="text-purple-400 font-bold">$397</span>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 flex items-center justify-between hover:border-purple-500/30 transition-all">
+                        <div><h4 class="font-semibold text-white">Social Media Audit</h4><p class="text-sm text-gray-400">Deep dive with actionable feedback</p></div>
+                        <span class="text-purple-400 font-bold">$247</span>
+                    </div>
+                    <a href="booking.html" class="btn-primary w-full justify-center mt-4"><i class="fas fa-calendar-check"></i> View All &amp; Book Now</a>
+                </div>
+                <div class="glass-card rounded-xl p-6 lg:p-8 reveal" style="transition-delay: 0.2s;">
+                    <h3 class="text-xl font-bold text-white mb-4">Request a Session</h3>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Booking request sent! We\'ll confirm within 24 hours.');">
+                        <div><input type="text" class="form-input" placeholder="Full Name" required /></div>
+                        <div><input type="email" class="form-input" placeholder="Email Address" required /></div>
+                        <div><input type="tel" class="form-input" placeholder="Phone Number" /></div>
+                        <div><select class="form-input"><option value="">Select Session Type</option><option>One-on-One Coaching</option><option>Creator Strategy Session</option><option>Brand Consultation</option><option>Social Media Audit</option></select></div>
+                        <div><textarea class="form-input" rows="3" placeholder="Tell me about your goals..."></textarea></div>
+                        <button type="submit" class="btn-primary w-full justify-center"><i class="fas fa-paper-plane"></i> Send Request</button>
+                    </form>
+                    <p class="text-xs text-gray-500 mt-3 text-center"><i class="fas fa-lock mr-1"></i> Your info is secure. Confirmation via email &amp; WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── TESTIMONIALS ─── -->
+    <section id="testimonials" class="section-padding">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">What People Are Saying</h2>
+                <p class="text-gray-400 mt-3">Real stories from creators and brands I've worked with.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="testimonial-card reveal">
+                    <div class="flex items-center gap-3"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">JD</div><div><h4 class="font-semibold text-white">James Davis</h4><p class="text-xs text-gray-400">Content Creator, 500K+ followers</p></div></div>
+                    <div class="flex text-yellow-400 mt-3 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-300 mt-2 text-sm">"Alex completely transformed my content strategy. Within 3 months, my Instagram grew from 80K to 500K. Absolute game-changer!"</p>
+                </div>
+                <div class="testimonial-card reveal" style="transition-delay: 0.1s;">
+                    <div class="flex items-center gap-3"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">SM</div><div><h4 class="font-semibold text-white">Sarah Mitchell</h4><p class="text-xs text-gray-400">Digital Marketer &amp; Course Creator</p></div></div>
+                    <div class="flex text-yellow-400 mt-3 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-300 mt-2 text-sm">"The brand consultation was worth every penny. Alex helped me land my first 5-figure sponsorship deal."</p>
+                </div>
+                <div class="testimonial-card reveal" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-3"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center text-white font-bold">MR</div><div><h4 class="font-semibold text-white">Mike Rodriguez</h4><p class="text-xs text-gray-400">Tech YouTuber, 1.2M subscribers</p></div></div>
+                    <div class="flex text-yellow-400 mt-3 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-300 mt-2 text-sm">"Alex's coaching helped me double my YouTube revenue in 60 days. The best investment I've made in my creator career."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── COMMUNITY ─── -->
+    <section id="community" class="section-padding bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Join the Movement</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Our Community</h2>
+                <p class="text-gray-400 mt-3">Connect with like-minded creators and grow together.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-green-500/20 flex items-center justify-center text-3xl group-hover:bg-green-500/30 transition-all group-hover:scale-110">💬</div>
+                    <h4 class="font-semibold text-white mt-3">WhatsApp Community</h4>
+                    <p class="text-sm text-gray-400">Daily tips &amp; support</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Join Now →</span>
+                </a>
+                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-blue-500/20 flex items-center justify-center text-3xl group-hover:bg-blue-500/30 transition-all group-hover:scale-110">✈️</div>
+                    <h4 class="font-semibold text-white mt-3">Telegram Group</h4>
+                    <p class="text-sm text-gray-400">Exclusive content &amp; updates</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Join Now →</span>
+                </a>
+                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-indigo-500/20 flex items-center justify-center text-3xl group-hover:bg-indigo-500/30 transition-all group-hover:scale-110">🎮</div>
+                    <h4 class="font-semibold text-white mt-3">Discord Server</h4>
+                    <p class="text-sm text-gray-400">Live discussions &amp; events</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Join Now →</span>
+                </a>
+                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal" style="transition-delay: 0.3s;">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-purple-500/20 flex items-center justify-center text-3xl group-hover:bg-purple-500/30 transition-all group-hover:scale-110">📧</div>
+                    <h4 class="font-semibold text-white mt-3">Newsletter</h4>
+                    <p class="text-sm text-gray-400">Weekly tips &amp; resources</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Subscribe →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CONTACT ─── -->
+    <section id="contact" class="section-padding">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Get in Touch</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Let's Connect</h2>
+                <p class="text-gray-400 mt-3">Have a question or business inquiry? Reach out anytime.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="glass-card rounded-xl p-6 lg:p-8 reveal">
+                    <h3 class="text-xl font-bold text-white mb-4">Send a Message</h3>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Message sent! We\'ll get back to you within 24 hours.');">
+                        <div><input type="text" class="form-input" placeholder="Full Name" required /></div>
+                        <div><input type="email" class="form-input" placeholder="Email Address" required /></div>
+                        <div><input type="text" class="form-input" placeholder="Subject" /></div>
+                        <div><textarea class="form-input" rows="4" placeholder="Your Message..." required></textarea></div>
+                        <button type="submit" class="btn-primary w-full justify-center"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+                <div class="space-y-6 reveal" style="transition-delay: 0.2s;">
+                    <div class="glass-card rounded-xl p-6 flex items-center gap-4 hover:border-purple-500/30 transition-all">
+                        <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 text-xl"><i class="fas fa-envelope"></i></div>
+                        <div><p class="text-sm text-gray-400">Email</p><a href="mailto:hello@alexmorgan.com" class="text-white hover:text-purple-400 transition">hello@alexmorgan.com</a></div>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 flex items-center gap-4 hover:border-purple-500/30 transition-all">
+                        <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-xl"><i class="fab fa-whatsapp"></i></div>
+                        <div><p class="text-sm text-gray-400">WhatsApp</p><a href="#" class="text-white hover:text-purple-400 transition">+1 (555) 123-4567</a></div>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 flex items-center gap-4 hover:border-purple-500/30 transition-all">
+                        <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 text-xl"><i class="fas fa-map-pin"></i></div>
+                        <div><p class="text-sm text-gray-400">Location</p><p class="text-white">Los Angeles, CA (Remote)</p></div>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 hover:border-purple-500/30 transition-all">
+                        <p class="text-sm text-gray-400 mb-2">Follow Me</p>
+                        <div class="flex gap-3 flex-wrap">
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="border-t border-white/5 py-12 bg-black/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 md:grid-cols-5 gap-8">
+                <div class="md:col-span-2">
+                    <h4 class="text-lg font-bold gradient-text">Alex Morgan</h4>
+                    <p class="text-sm text-gray-400 mt-2 max-w-sm">Helping creators build empires through app promotions, affiliate marketing, and strategic brand collaborations.</p>
+                    <div class="flex gap-3 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mb-3">Quick Links</h5>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Home</a></li>
+                        <li><a href="about.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">About</a></li>
+                        <li><a href="services.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Services</a></li>
+                        <li><a href="apps.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Apps</a></li>
+                        <li><a href="products.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mb-3">Resources</h5>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="academy.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Academy</a></li>
+                        <li><a href="referral.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Referral Apps</a></li>
+                        <li><a href="booking.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Book a Session</a></li>
+                        <li><a href="contact.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mb-3">Legal</h5>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Terms &amp; Conditions</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Affiliate Disclosure</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 mt-8 pt-6 text-center text-sm text-gray-500">
+                <p>&copy; 2025 Alex Morgan. All rights reserved. Made with <span class="text-red-400">❤️</span> for creators everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ─── FLOATING BUTTONS ─── -->
+    <a href="https://wa.me/15551234567" target="_blank" class="float-btn float-whatsapp"><i class="fab fa-whatsapp"></i> Chat</a>
+    <a href="booking.html" class="float-btn float-book"><i class="fas fa-calendar-check"></i> Book Now</a>
+    <button id="backToTop"><i class="fas fa-chevron-up"></i></button>
+    <button class="chat-bubble"><i class="fas fa-robot"></i></button>
+
+    <script>
+        // ─── Cookie Consent ───
+        function acceptCookies() {
+            document.getElementById('cookieBanner').classList.add('hidden');
+            localStorage.setItem('cookiesAccepted', 'true');
+        }
+        if (localStorage.getItem('cookiesAccepted') === 'true') {
+            document.getElementById('cookieBanner').classList.add('hidden');
+        }
+
+        // ─── Mobile Menu ───
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('open');
+            document.getElementById('mobileOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // ─── Back to Top ───
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) backToTop.classList.add('visible');
+            else backToTop.classList.remove('visible');
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ─── Animated Counters ───
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+        const animateCounter = (counter) => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            const suffix = counter.getAttribute('data-suffix') || '';
+            const isFloat = target % 1 !== 0;
+            let current = 0;
+            const increment = target / speed;
+            const update = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = (isFloat ? current.toFixed(1) : Math.ceil(current)) + suffix;
+                    requestAnimationFrame(update);
+                } else counter.textContent = target + suffix;
+            };
+            update();
+        };
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // ─── Theme Toggle ───
+        let darkMode = true;
+        function toggleTheme() {
+            darkMode = !darkMode;
+            const body = document.body;
+            if (darkMode) {
+                body.style.background = '#0b0d12';
+                body.style.color = '#e8edf5';
+                document.querySelectorAll('.theme-toggle i').forEach(el => el.className = 'fas fa-moon');
+                document.querySelectorAll('.glass-card, .app-card, .product-card, .blog-card, .testimonial-card').forEach(el => {
+                    el.style.background = 'rgba(255, 255, 255, 0.03)';
+                    el.style.borderColor = 'rgba(255, 255, 255, 0.06)';
+                });
+            } else {
+                body.style.background = '#f3f4f6';
+                body.style.color = '#1f2937';
+                document.querySelectorAll('.theme-toggle i').forEach(el => el.className = 'fas fa-sun');
+                document.querySelectorAll('.glass-card, .app-card, .product-card, .blog-card, .testimonial-card').forEach(el => {
+                    el.style.background = 'rgba(255, 255, 255, 0.7)';
+                    el.style.borderColor = 'rgba(0, 0, 0, 0.08)';
+                });
+            }
+        }
+
+        // ─── Navbar Scroll Effect ───
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('nav-scrolled');
+            else nav.classList.remove('nav-scrolled');
+        });
+
+        // ─── Scroll Reveal ───
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ─── Smooth Anchor Links ───
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href.includes('.html')) return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        console.log('🚀 Home Page Loaded Successfully!');
+        console.log('📸 Profile image added to hero section');
+        console.log('📄 All pages: Home, About, Services, Apps, Products, Academy, Referral, Booking, Contact');
+    </script>
+</body>
+</html>
