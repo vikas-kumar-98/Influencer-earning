@@ -106,13 +106,13 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
             background: rgba(255, 255, 255, 0.05);
             color: #a0aec0;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            font-size: 20px;
+            font-size: 24px;
             border: 1px solid rgba(255, 255, 255, 0.06);
             text-decoration: none;
         }
@@ -132,6 +132,8 @@
         .social-icon.whatsapp:hover { background: #25d366; border-color: #25d366; }
         .social-icon.telegram:hover { background: #0088cc; border-color: #0088cc; }
         .social-icon.pinterest:hover { background: #e60023; border-color: #e60023; }
+        .social-icon.threads:hover { background: #000; border-color: #fff; }
+        .social-icon.snapchat:hover { background: #fffc00; border-color: #fffc00; color: #000; }
 
         /* ─── Floating Buttons ─── */
         .float-btn {
@@ -379,76 +381,240 @@
             background-clip: text;
         }
 
-        .countdown-item {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px 18px;
-            min-width: 60px;
-            text-align: center;
-            transition: all 0.3s ease;
+        /* ─── Product Carousel Styles ─── */
+        .product-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
         }
-        .countdown-item:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .product-carousel-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 24px;
+        }
+        .product-carousel-item {
+            flex: 0 0 calc(100% / 4 - 18px);
+            min-width: 250px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s ease;
+        }
+        .product-carousel-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(124, 58, 237, 0.3);
+            box-shadow: 0 25px 60px rgba(124, 58, 237, 0.15);
+        }
+        .product-carousel-item .product-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .product-carousel-item .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        .product-carousel-item:hover .product-image img {
             transform: scale(1.05);
         }
-        .countdown-item span:first-child { font-size: 1.8rem; font-weight: 700; color: #fff; }
+        .product-carousel-item .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            z-index: 2;
+        }
+        .badge-best { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; }
+        .badge-hot { background: linear-gradient(135deg, #eab308, #ca8a04); color: #fff; }
+        .badge-new { background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; }
+        .badge-pro { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; }
+        .badge-sale { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; }
 
-        /* ─── Product/App Cards ─── */
-        .app-card, .product-card, .blog-card, .testimonial-card {
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(124, 58, 237, 0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .carousel-btn:hover {
+            background: rgba(124, 58, 237, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .carousel-dot.active {
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            width: 30px;
+            border-radius: 10px;
+        }
+
+        /* ─── Testimonial Carousel ─── */
+        .testimonial-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 24px;
+        }
+        .testimonial-item {
+            flex: 0 0 calc(100% / 3 - 16px);
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s ease;
+        }
+        .testimonial-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(124, 58, 237, 0.3);
+            box-shadow: 0 25px 60px rgba(124, 58, 237, 0.15);
+        }
+        .testimonial-item .quote-icon {
+            font-size: 2.5rem;
+            color: rgba(124, 58, 237, 0.3);
+            margin-bottom: 8px;
+        }
+        .testimonial-item .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .testimonial-item .video-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background: #1a1a2e;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+        .testimonial-item .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .testimonial-item .video-wrapper .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(124, 58, 237, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .testimonial-item .video-wrapper .play-btn:hover {
+            transform: scale(1.1);
+            background: rgba(124, 58, 237, 1);
+        }
+        .testimonial-item .video-wrapper .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+        }
+        .testimonial-item .video-wrapper:hover .video-overlay {
+            background: rgba(0,0,0,0.1);
+        }
+        .testimonial-item .video-wrapper .duration-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        /* ─── Tool/App Card Styles ─── */
+        .tool-card {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 20px;
             padding: 24px;
             border: 1px solid rgba(255, 255, 255, 0.06);
             transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .app-card:hover, .product-card:hover, .blog-card:hover, .testimonial-card:hover {
+        .tool-card:hover {
             transform: translateY(-8px);
             border-color: rgba(124, 58, 237, 0.3);
             box-shadow: 0 25px 60px rgba(124, 58, 237, 0.15);
         }
-
-        .gradient-border {
-            position: relative;
-            background: #141820;
+        .tool-card .tool-icon {
+            width: 60px;
+            height: 60px;
             border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            transition: all 0.4s ease;
         }
-        .gradient-border::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 18px;
-            padding: 2px;
-            background: linear-gradient(135deg, #7c3aed, #ec4899, #7c3aed);
-            background-size: 300% 300%;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: borderGlow 4s ease-in-out infinite;
+        .tool-card:hover .tool-icon {
+            transform: scale(1.1) rotate(-5deg);
         }
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-up {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-
-        @keyframes pulse-slow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
 
         /* ─── Profile Image Styles ─── */
         .profile-image-container {
@@ -458,7 +624,7 @@
             aspect-ratio: 1/1;
             border-radius: 24px;
             overflow: hidden;
-            border: .5px solid rgba(124, 58, 237, 0.2);
+            border: 3px solid rgba(124, 58, 237, 0.2);
             transition: all 0.5s ease;
         }
         .profile-image-container:hover {
@@ -467,8 +633,8 @@
             transform: scale(1.02);
         }
         .profile-image-container img {
-            width: 90%;
-            height: 90%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             transition: all 0.5s ease;
         }
@@ -489,21 +655,57 @@
             opacity: 1;
         }
 
-        /* ─── Badge Styles ─── */
-        .badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            padding: 4px 12px;
-            border-radius: 100px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
+        /* ─── Logo Styles ─── */
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
-        .badge-best { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
-        .badge-hot { background: rgba(234, 179, 8, 0.2); color: #facc15; }
-        .badge-new { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
-        .badge-pro { background: rgba(168, 85, 247, 0.2); color: #a78bfa; }
+        .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            color: #fff;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.4s ease;
+        }
+        .logo-icon:hover {
+            transform: rotate(-10deg) scale(1.05);
+        }
+
+        /* ─── Brand Logo Styles ─── */
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s ease;
+            min-width: 100px;
+            min-height: 60px;
+            color: #9ca3af;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        .brand-logo:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(124, 58, 237, 0.3);
+            transform: translateY(-4px) scale(1.02);
+            color: #fff;
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.1);
+        }
+        .brand-logo i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
 
         /* ─── Reveal Animation ─── */
         .reveal {
@@ -516,7 +718,46 @@
             transform: translateY(0);
         }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
+
+        @keyframes star-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .star-pulse {
+            animation: star-pulse 2s ease-in-out infinite;
+        }
+
         /* ─── Responsive ─── */
+        @media (max-width: 1024px) {
+            .product-carousel-item { flex: 0 0 calc(100% / 3 - 16px); }
+            .testimonial-item { flex: 0 0 calc(100% / 2 - 12px); }
+        }
+        @media (max-width: 768px) {
+            .product-carousel-item { flex: 0 0 calc(100% / 2 - 12px); min-width: 200px; }
+            .testimonial-item { flex: 0 0 calc(100% / 1 - 0px); min-width: 280px; }
+            .carousel-btn { width: 36px; height: 36px; font-size: 14px; }
+            .carousel-btn.prev { left: 5px; }
+            .carousel-btn.next { right: 5px; }
+            .social-icon { width: 48px; height: 48px; font-size: 20px; }
+            .testimonial-item .video-wrapper .play-btn { width: 44px; height: 44px; font-size: 18px; }
+        }
+        @media (max-width: 480px) {
+            .product-carousel-item { flex: 0 0 100%; min-width: 150px; }
+            .testimonial-item { flex: 0 0 100%; min-width: 250px; padding: 20px; }
+            .carousel-btn { width: 32px; height: 32px; font-size: 12px; }
+        }
+
         @media (max-width: 640px) {
             .hero-title { font-size: 2.2rem !important; }
             .stat-number { font-size: 1.8rem; }
@@ -527,7 +768,10 @@
             .chat-bubble { bottom: 130px; right: 16px; width: 48px; height: 48px; font-size: 20px; }
             .cookie-banner { flex-direction: column; text-align: center; padding: 16px 20px; }
             .section-padding { padding: 50px 0; }
-            .profile-image-container { max-width: 280px; }
+            .profile-image-container { max-width: 480px; }
+            .brand-logo { padding: 8px 16px; min-width: 70px; min-height: 50px; font-size: 12px; }
+            .brand-logo i { font-size: 18px; }
+            .social-icon { width: 44px; height: 44px; font-size: 18px; }
         }
         @media (min-width: 1024px) { .section-padding { padding: 80px 0; } }
     </style>
@@ -553,7 +797,10 @@
     <!-- ─── MOBILE MENU ─── -->
     <div id="mobileMenu" class="mobile-menu">
         <div class="flex justify-between items-center mb-8">
-            <span class="text-xl font-bold gradient-text">ErVikasTech </span>
+            <div class="flex items-center gap-3">
+                <div class="logo-icon">A</div>
+                <span class="text-xl font-bold gradient-text">ErVikasTech</span>
+            </div>
             <button onclick="closeMobileMenu()" class="text-gray-400 hover:text-white text-2xl transition-all hover:rotate-90">
                 <i class="fas fa-times"></i>
             </button>
@@ -579,7 +826,10 @@
     <nav id="navbar" class="nav-sticky">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="text-xl font-bold gradient-text hover:scale-105 transition-transform">ErVikasTech</a>
+                <a href="index.html" class="flex items-center gap-3 hover:scale-105 transition-transform">
+                    <div class="logo-icon">A</div>
+                    <span class="logo-text font-bold gradient-text">ErVikasTech</span>
+                </a>
 
                 <div class="hidden lg:flex items-center gap-5">
                     <a href="index.html" class="nav-link active">Home</a>
@@ -588,7 +838,7 @@
                     <a href="apps.html" class="nav-link">Apps</a>
                     <a href="products.html" class="nav-link">Products</a>
                     <a href="academy.html" class="nav-link">Academy</a>
-                    <a href="referal.html" class="nav-link">Referral Apps</a>
+                    <a href="referral.html" class="nav-link">Referral Apps</a>
                     <a href="booking.html" class="nav-link">Book</a>
                     <a href="contact.html" class="nav-link">Contact</a>
 
@@ -629,7 +879,7 @@
                     </div>
                     <h1 class="hero-title text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight">
                         <span class="text-white">Hey, I'm</span><br />
-                        <span class="gradient-text">Er Vikas Kumar</span>
+                        <span class="gradient-text">Alex Morgan</span>
                     </h1>
                     <p class="text-lg text-gray-300 mt-4 max-w-lg leading-relaxed">
                         Helping creators build empires through app promotions, affiliate marketing,
@@ -657,20 +907,10 @@
                 </div>
                 <div class="flex justify-center reveal visible" style="transition-delay: 0.3s;">
                     <div class="profile-image-container animate-float">
-                        <!-- ════════════════════════════════════════════════ -->
-                        <!-- ★ REPLACE THIS IMAGE URL WITH YOUR PHOTO ★    -->
-                        <!-- ════════════════════════════════════════════════ -->
                         <img 
-                            src="img/bkt.png" 
-                            alt="Alex Morgan - Premium Influencer"
-                            loading="lazy" style="width: 70%; height: auto;" 
+                            src="img/bkt.png"
+                            loading="lazy" style="width: 70%; height: auto;
                         />
-                        <!-- ════════════════════════════════════════════════ -->
-                        <!-- Alternative: Use your own image URL:            -->
-                        <!-- <img src="assets/images/profile.jpg"             -->
-                        <!--      alt="Alex Morgan" loading="lazy" />        -->
-                        <!-- ════════════════════════════════════════════════ -->
-                        
                         <div class="overlay">
                             <div class="flex justify-center gap-3">
                                 <span class="px-3 py-1 rounded-full bg-purple-500/80 text-white text-xs">📸 12.5M Followers</span>
@@ -679,6 +919,578 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── BRAND LOGOS SECTION ─── -->
+    <section class="py-12 border-y border-white/5 bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="section-tag">Trusted By</span>
+                <p class="text-sm text-gray-400 mt-2">Brands I've collaborated with</p>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+                <div class="brand-logo group"><i class="fas fa-file-alt text-red-400 group-hover:text-red-300 transition"></i><span class="group-hover:text-white transition">Adobe</span></div>
+                <div class="brand-logo group"><i class="fas fa-mobile-alt text-blue-400 group-hover:text-blue-300 transition"></i><span class="group-hover:text-white transition">Samsung</span></div>
+                <div class="brand-logo group"><i class="fas fa-music text-green-400 group-hover:text-green-300 transition"></i><span class="group-hover:text-white transition">Spotify</span></div>
+                <div class="brand-logo group"><i class="fas fa-running text-purple-400 group-hover:text-purple-300 transition"></i><span class="group-hover:text-white transition">Nike</span></div>
+                <div class="brand-logo group"><i class="fas fa-paint-brush text-pink-400 group-hover:text-pink-300 transition"></i><span class="group-hover:text-white transition">Canva</span></div>
+                <div class="brand-logo group"><i class="fas fa-notes-medical text-yellow-400 group-hover:text-yellow-300 transition"></i><span class="group-hover:text-white transition">Notion</span></div>
+                <div class="brand-logo group"><i class="fab fa-google text-blue-400 group-hover:text-blue-300 transition"></i><span class="group-hover:text-white transition">Google</span></div>
+                <div class="brand-logo group"><i class="fab fa-microsoft text-blue-500 group-hover:text-blue-400 transition"></i><span class="group-hover:text-white transition">Microsoft</span></div>
+                <div class="brand-logo group"><i class="fab fa-apple text-gray-400 group-hover:text-white transition"></i><span class="group-hover:text-white transition">Apple</span></div>
+                <div class="brand-logo group"><i class="fab fa-amazon text-yellow-400 group-hover:text-yellow-300 transition"></i><span class="group-hover:text-white transition">Amazon</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── PRODUCT CAROUSEL SECTION ─── -->
+    <section id="products" class="section-padding">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="section-tag">Featured Products</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Best Selling Gear</h2>
+                <p class="text-gray-400 mt-3">Hand-picked products that I personally use and recommend</p>
+            </div>
+
+            <div class="product-carousel reveal">
+                <div class="product-carousel-track" id="productTrack">
+                    
+                    <!-- Product 1: Sony A7 IV -->
+                    <div class="product-carousel-item">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=400&fit=crop" alt="Sony A7 IV Camera" loading="lazy" />
+                            <span class="badge badge-best">Best Seller</span>
+                        </div>
+                        <h4 class="font-semibold text-white mt-3 text-lg">Sony A7 IV</h4>
+                        <p class="text-sm text-gray-400">Mirrorless Camera</p>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.9</span>
+                            <span class="text-xs text-gray-400">(850 reviews)</span>
+                        </div>
+                        <p class="text-sm text-gray-300 mt-2 line-clamp-2">The best hybrid camera for creators — 4K 60fps, stunning AF.</p>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-lg font-bold text-white">$2,498</span>
+                            <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Product 2: Shure SM7B -->
+                    <div class="product-carousel-item">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop" alt="Shure SM7B Microphone" loading="lazy" />
+                            <span class="badge badge-hot">⚡ Hot</span>
+                        </div>
+                        <h4 class="font-semibold text-white mt-3 text-lg">Shure SM7B</h4>
+                        <p class="text-sm text-gray-400">Microphone</p>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.8</span>
+                            <span class="text-xs text-gray-400">(620 reviews)</span>
+                        </div>
+                        <p class="text-sm text-gray-300 mt-2 line-clamp-2">Industry-standard mic for podcasts and voiceovers.</p>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-lg font-bold text-white">$399</span>
+                            <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Product 3: MacBook Pro M3 -->
+                    <div class="product-carousel-item">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=400&fit=crop" alt="MacBook Pro M3" loading="lazy" />
+                            <span class="badge badge-pro">Pro</span>
+                        </div>
+                        <h4 class="font-semibold text-white mt-3 text-lg">MacBook Pro M3</h4>
+                        <p class="text-sm text-gray-400">Laptop</p>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.7</span>
+                            <span class="text-xs text-gray-400">(1.1k reviews)</span>
+                        </div>
+                        <p class="text-sm text-gray-300 mt-2 line-clamp-2">Lightning-fast editing with 22-hour battery life.</p>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-lg font-bold text-white">$1,999</span>
+                            <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Product 4: Aputure 120D -->
+                    <div class="product-carousel-item">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1526178613552-2b45c6c302f0?w=400&h=400&fit=crop" alt="Aputure 120D Light" loading="lazy" />
+                            <span class="badge badge-new">New</span>
+                        </div>
+                        <h4 class="font-semibold text-white mt-3 text-lg">Aputure 120D</h4>
+                        <p class="text-sm text-gray-400">Lighting Kit</p>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.6</span>
+                            <span class="text-xs text-gray-400">(340 reviews)</span>
+                        </div>
+                        <p class="text-sm text-gray-300 mt-2 line-clamp-2">Professional bi-color LED light for studio-quality setups.</p>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-lg font-bold text-white">$1,150</span>
+                            <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Product 5: iPhone 15 Pro Max -->
+                    <div class="product-carousel-item">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&h=400&fit=crop" alt="iPhone 15 Pro Max" loading="lazy" />
+                            <span class="badge badge-hot">⚡ Hot</span>
+                        </div>
+                        <h4 class="font-semibold text-white mt-3 text-lg">iPhone 15 Pro Max</h4>
+                        <p class="text-sm text-gray-400">Smartphone</p>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.8</span>
+                            <span class="text-xs text-gray-400">(2.3k reviews)</span>
+                        </div>
+                        <p class="text-sm text-gray-300 mt-2 line-clamp-2">Ultimate creator phone with ProRes video and 5x zoom.</p>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-lg font-bold text-white">$1,199</span>
+                            <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="carousel-dots" id="productDots"></div>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="products.html" class="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-all hover:gap-3">
+                    View All Products <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── SOCIAL MEDIA HUB ─── -->
+    <section id="social" class="section-padding bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Connect</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Social Media Hub</h2>
+                <p class="text-gray-400 mt-3">Follow me on all platforms and join the conversation.</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-red-500/30 transition-all">
+                    <div class="social-icon youtube mx-auto"><i class="fab fa-youtube"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">YouTube</p>
+                    <p class="text-xs text-gray-400">5.2M Subscribers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-red-500/20 text-red-300 group-hover:bg-red-500/30 transition">Subscribe</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-pink-500/30 transition-all">
+                    <div class="social-icon instagram mx-auto"><i class="fab fa-instagram"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Instagram</p>
+                    <p class="text-xs text-gray-400">3.8M Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 group-hover:bg-pink-500/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-black/50 transition-all">
+                    <div class="social-icon tiktok mx-auto"><i class="fab fa-tiktok"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">TikTok</p>
+                    <p class="text-xs text-gray-400">2.1M Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-black/30 text-gray-300 group-hover:bg-black/50 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-blue-400/30 transition-all">
+                    <div class="social-icon twitter mx-auto"><i class="fab fa-x-twitter"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">X (Twitter)</p>
+                    <p class="text-xs text-gray-400">890K Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 group-hover:bg-blue-500/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-blue-600/30 transition-all">
+                    <div class="social-icon linkedin mx-auto"><i class="fab fa-linkedin-in"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">LinkedIn</p>
+                    <p class="text-xs text-gray-400">450K Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-blue-600/20 text-blue-300 group-hover:bg-blue-600/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-blue-500/30 transition-all">
+                    <div class="social-icon facebook mx-auto"><i class="fab fa-facebook-f"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Facebook</p>
+                    <p class="text-xs text-gray-400">1.2M Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 group-hover:bg-blue-500/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-indigo-500/30 transition-all">
+                    <div class="social-icon discord mx-auto"><i class="fab fa-discord"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Discord</p>
+                    <p class="text-xs text-gray-400">32K Members</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 group-hover:bg-indigo-500/30 transition">Join</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-blue-400/30 transition-all">
+                    <div class="social-icon telegram mx-auto"><i class="fab fa-telegram-plane"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Telegram</p>
+                    <p class="text-xs text-gray-400">78K Members</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-blue-400/20 text-blue-300 group-hover:bg-blue-400/30 transition">Join</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-green-500/30 transition-all">
+                    <div class="social-icon whatsapp mx-auto"><i class="fab fa-whatsapp"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">WhatsApp</p>
+                    <p class="text-xs text-gray-400">Channel</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-green-500/20 text-green-300 group-hover:bg-green-500/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-black/50 transition-all">
+                    <div class="social-icon threads mx-auto"><i class="fas fa-message"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Threads</p>
+                    <p class="text-xs text-gray-400">340K Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-black/30 text-gray-300 group-hover:bg-black/50 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-red-600/30 transition-all">
+                    <div class="social-icon pinterest mx-auto"><i class="fab fa-pinterest-p"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Pinterest</p>
+                    <p class="text-xs text-gray-400">210K Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-red-600/20 text-red-300 group-hover:bg-red-600/30 transition">Follow</span>
+                </a>
+                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group hover:border-yellow-400/30 transition-all">
+                    <div class="social-icon snapchat mx-auto"><i class="fab fa-snapchat-ghost"></i></div>
+                    <p class="text-sm font-semibold mt-2 text-white">Snapchat</p>
+                    <p class="text-xs text-gray-400">150K Followers</p>
+                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-yellow-400/20 text-yellow-300 group-hover:bg-yellow-400/30 transition">Add</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── TOOLS THAT POWER MY WORKFLOW ─── -->
+    <section id="apps" class="section-padding">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Tools I Use</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Tools That Power My Workflow</h2>
+                <p class="text-gray-400 mt-3">The essential apps and software I use daily to create content and grow my brand.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="tool-card reveal">
+                    <div class="flex items-center gap-4">
+                        <div class="tool-icon bg-purple-500/20 text-purple-400">🎬</div>
+                        <div>
+                            <h4 class="font-semibold text-white">CapCut</h4>
+                            <p class="text-xs text-gray-400">Video Editing</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-3">My go-to for editing shorts, reels, and TikToks. Free and powerful.</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.8</span>
+                        <span class="text-xs text-gray-400">(2.3M+ reviews)</span>
+                    </div>
+                    <a href="https://capcut.com" target="_blank" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition">Visit Site <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="tool-card reveal" style="transition-delay: 0.1s;">
+                    <div class="flex items-center gap-4">
+                        <div class="tool-icon bg-pink-500/20 text-pink-400">📸</div>
+                        <div>
+                            <h4 class="font-semibold text-white">Lightroom</h4>
+                            <p class="text-xs text-gray-400">Photo Editing</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-3">Professional photo editing with custom presets that save hours.</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.7</span>
+                        <span class="text-xs text-gray-400">(1.8M+ reviews)</span>
+                    </div>
+                    <a href="https://lightroom.adobe.com" target="_blank" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition">Visit Site <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="tool-card reveal" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-4">
+                        <div class="tool-icon bg-blue-500/20 text-blue-400">🤖</div>
+                        <div>
+                            <h4 class="font-semibold text-white">ChatGPT</h4>
+                            <p class="text-xs text-gray-400">AI Assistant</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-3">Brainstorming content ideas, writing scripts, and generating captions.</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.9</span>
+                        <span class="text-xs text-gray-400">(5M+ reviews)</span>
+                    </div>
+                    <a href="https://chat.openai.com" target="_blank" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition">Visit Site <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="tool-card reveal" style="transition-delay: 0.3s;">
+                    <div class="flex items-center gap-4">
+                        <div class="tool-icon bg-green-500/20 text-green-400">📊</div>
+                        <div>
+                            <h4 class="font-semibold text-white">Notion</h4>
+                            <p class="text-xs text-gray-400">Productivity</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-3">All-in-one workspace for planning, tracking goals, and managing projects.</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.6</span>
+                        <span class="text-xs text-gray-400">(1.2M+ reviews)</span>
+                    </div>
+                    <a href="https://notion.so" target="_blank" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition">Visit Site <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="tool-card reveal" style="transition-delay: 0.4s;">
+                    <div class="flex items-center gap-4">
+                        <div class="tool-icon bg-orange-500/20 text-orange-400">🎨</div>
+                        <div>
+                            <h4 class="font-semibold text-white">Canva</h4>
+                            <p class="text-xs text-gray-400">Design</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-3">Creating thumbnails, social graphics, and presentations quickly.</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.7</span>
+                        <span class="text-xs text-gray-400">(3.1M+ reviews)</span>
+                    </div>
+                    <a href="https://canva.com" target="_blank" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition">Visit Site <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="tool-card reveal" style="transition-delay: 0.5s;">
+                    <div class="flex items-center gap-4">
+                        <div class="tool-icon bg-red-500/20 text-red-400">🎥</div>
+                        <div>
+                            <h4 class="font-semibold text-white">DaVinci Resolve</h4>
+                            <p class="text-xs text-gray-400">Video Editing</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-3">Professional color grading and video editing for YouTube content.</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.8</span>
+                        <span class="text-xs text-gray-400">(890K+ reviews)</span>
+                    </div>
+                    <a href="https://blackmagicdesign.com" target="_blank" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition">Visit Site <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="tool-card reveal" style="transition-delay: 0.6s;">
+                    <div class="flex items-center gap-4">
+                        <div class="tool-icon bg-green-500/20 text-green-400">✍️</div>
+                        <div>
+                            <h4 class="font-semibold text-white">Grammarly</h4>
+                            <p class="text-xs text-gray-400">Writing Assistant</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-3">Polishing captions, scripts, and emails with AI-powered suggestions.</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.5</span>
+                        <span class="text-xs text-gray-400">(2.1M+ reviews)</span>
+                    </div>
+                    <a href="https://grammarly.com" target="_blank" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition">Visit Site <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="tool-card reveal" style="transition-delay: 0.7s;">
+                    <div class="flex items-center gap-4">
+                        <div class="tool-icon bg-blue-500/20 text-blue-400">📱</div>
+                        <div>
+                            <h4 class="font-semibold text-white">Hootsuite</h4>
+                            <p class="text-xs text-gray-400">Social Media Management</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-3">Scheduling posts and managing multiple social accounts efficiently.</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.4</span>
+                        <span class="text-xs text-gray-400">(560K+ reviews)</span>
+                    </div>
+                    <a href="https://hootsuite.com" target="_blank" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition">Visit Site <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="apps.html" class="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-all hover:gap-3">
+                    View All Recommended Apps <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── TESTIMONIALS CAROUSEL (AUTO-SLIDING WITH VIDEO) ─── -->
+    <section id="testimonials" class="section-padding bg-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">What People Are Saying</h2>
+                <p class="text-gray-400 mt-3">Real stories from creators and brands I've worked with</p>
+            </div>
+
+            <div class="testimonial-carousel reveal">
+                <div class="testimonial-track" id="testimonialTrack">
+                    
+                    <!-- Testimonial 1: James Davis (Video) -->
+                    <div class="testimonial-item">
+                        <div class="video-wrapper" onclick="playVideo(this)">
+                            <div class="video-overlay"></div>
+                            <video muted preload="metadata">
+                                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                            </video>
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <span class="duration-badge">1:24</span>
+                        </div>
+                        <div class="flex items-center gap-3 mt-3">
+                            <div class="avatar bg-gradient-to-br from-purple-500 to-pink-500">JD</div>
+                            <div>
+                                <h4 class="font-semibold text-white">James Davis</h4>
+                                <p class="text-xs text-gray-400">Content Creator, 500K+ followers</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mt-2 text-sm star-pulse">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 mt-2 text-sm">"Alex completely transformed my content strategy. Within 3 months, my Instagram grew from 80K to 500K. Absolute game-changer!"</p>
+                        <div class="mt-3 flex items-center gap-2 text-xs text-gray-400">
+                            <i class="fas fa-video text-purple-400"></i>
+                            <span>Video Testimonial</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2: Sarah Mitchell (Video) -->
+                    <div class="testimonial-item">
+                        <div class="video-wrapper" onclick="playVideo(this)">
+                            <div class="video-overlay"></div>
+                            <video muted preload="metadata">
+                                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                            </video>
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <span class="duration-badge">2:05</span>
+                        </div>
+                        <div class="flex items-center gap-3 mt-3">
+                            <div class="avatar bg-gradient-to-br from-blue-500 to-cyan-500">SM</div>
+                            <div>
+                                <h4 class="font-semibold text-white">Sarah Mitchell</h4>
+                                <p class="text-xs text-gray-400">Digital Marketer &amp; Course Creator</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mt-2 text-sm star-pulse">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 mt-2 text-sm">"The brand consultation was worth every penny. Alex helped me land my first 5-figure sponsorship deal."</p>
+                        <div class="mt-3 flex items-center gap-2 text-xs text-gray-400">
+                            <i class="fas fa-video text-purple-400"></i>
+                            <span>Video Testimonial</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3: Mike Rodriguez (Video) -->
+                    <div class="testimonial-item">
+                        <div class="video-wrapper" onclick="playVideo(this)">
+                            <div class="video-overlay"></div>
+                            <video muted preload="metadata">
+                                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                            </video>
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <span class="duration-badge">0:48</span>
+                        </div>
+                        <div class="flex items-center gap-3 mt-3">
+                            <div class="avatar bg-gradient-to-br from-green-500 to-teal-500">MR</div>
+                            <div>
+                                <h4 class="font-semibold text-white">Mike Rodriguez</h4>
+                                <p class="text-xs text-gray-400">Tech YouTuber, 1.2M subscribers</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mt-2 text-sm star-pulse">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 mt-2 text-sm">"Alex's coaching helped me double my YouTube revenue in 60 days. The best investment I've made."</p>
+                        <div class="mt-3 flex items-center gap-2 text-xs text-gray-400">
+                            <i class="fas fa-video text-purple-400"></i>
+                            <span>Video Testimonial</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4: Emily Watson (Text) -->
+                    <div class="testimonial-item">
+                        <div class="quote-icon">"</div>
+                        <div class="flex items-center gap-3">
+                            <div class="avatar bg-gradient-to-br from-orange-500 to-red-500">EW</div>
+                            <div>
+                                <h4 class="font-semibold text-white">Emily Watson</h4>
+                                <p class="text-xs text-gray-400">Fashion Influencer, 2.1M followers</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mt-2 text-sm star-pulse">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 mt-2 text-sm">"Alex's Instagram strategy helped me grow from 500K to 2.1M in just 4 months. The Reels framework alone was worth the investment!"</p>
+                        <div class="mt-3 flex items-center gap-2 text-xs text-gray-400">
+                            <i class="fas fa-file-alt text-purple-400"></i>
+                            <span>Written Testimonial</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 5: David Chen (Text) -->
+                    <div class="testimonial-item">
+                        <div class="quote-icon">"</div>
+                        <div class="flex items-center gap-3">
+                            <div class="avatar bg-gradient-to-br from-indigo-500 to-purple-500">DC</div>
+                            <div>
+                                <h4 class="font-semibold text-white">David Chen</h4>
+                                <p class="text-xs text-gray-400">SaaS Founder, 350K followers</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mt-2 text-sm star-pulse">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 mt-2 text-sm">"The LinkedIn growth strategy Alex provided completely changed my B2B game. I'm now getting 10x more leads from organic content."</p>
+                        <div class="mt-3 flex items-center gap-2 text-xs text-gray-400">
+                            <i class="fas fa-file-alt text-purple-400"></i>
+                            <span>Written Testimonial</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 6: Rachel Kim (Video) -->
+                    <div class="testimonial-item">
+                        <div class="video-wrapper" onclick="playVideo(this)">
+                            <div class="video-overlay"></div>
+                            <video muted preload="metadata">
+                                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                            </video>
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <span class="duration-badge">1:56</span>
+                        </div>
+                        <div class="flex items-center gap-3 mt-3">
+                            <div class="avatar bg-gradient-to-br from-pink-500 to-rose-500">RK</div>
+                            <div>
+                                <h4 class="font-semibold text-white">Rachel Kim</h4>
+                                <p class="text-xs text-gray-400">Beauty Creator, 850K followers</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mt-2 text-sm star-pulse">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 mt-2 text-sm">"Alex's coaching helped me secure my first major brand deal. The pitch framework he taught me was incredible!"</p>
+                        <div class="mt-3 flex items-center gap-2 text-xs text-gray-400">
+                            <i class="fas fa-video text-purple-400"></i>
+                            <span>Video Testimonial</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-btn prev" onclick="moveTestimonial(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" onclick="moveTestimonial(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="carousel-dots" id="testimonialDots"></div>
+            </div>
+
+            <!-- View All Testimonials -->
+            <div class="text-center mt-8">
+                <a href="#" class="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-all hover:gap-3">
+                    Read All Testimonials <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -742,172 +1554,45 @@
         </div>
     </section>
 
-    <!-- ─── SOCIAL HUB ─── -->
-    <section id="social" class="section-padding bg-white/5">
+    <!-- ─── COMMUNITY ─── -->
+    <section id="community" class="section-padding bg-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <span class="section-tag">Connect</span>
-                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Social Media Hub</h2>
-                <p class="text-gray-400 mt-3">Follow me on all platforms and join the conversation.</p>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal">
-                    <div class="social-icon youtube mx-auto"><i class="fab fa-youtube"></i></div>
-                    <p class="text-sm font-semibold mt-2 text-white">YouTube</p>
-                    <p class="text-xs text-gray-400">5.2M Followers</p>
-                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Follow</span>
-                </a>
-                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.1s;">
-                    <div class="social-icon instagram mx-auto"><i class="fab fa-instagram"></i></div>
-                    <p class="text-sm font-semibold mt-2 text-white">Instagram</p>
-                    <p class="text-xs text-gray-400">3.8M Followers</p>
-                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Follow</span>
-                </a>
-                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.2s;">
-                    <div class="social-icon tiktok mx-auto"><i class="fab fa-tiktok"></i></div>
-                    <p class="text-sm font-semibold mt-2 text-white">TikTok</p>
-                    <p class="text-xs text-gray-400">2.1M Followers</p>
-                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Follow</span>
-                </a>
-                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.3s;">
-                    <div class="social-icon twitter mx-auto"><i class="fab fa-x-twitter"></i></div>
-                    <p class="text-sm font-semibold mt-2 text-white">X (Twitter)</p>
-                    <p class="text-xs text-gray-400">890K Followers</p>
-                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Follow</span>
-                </a>
-                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.4s;">
-                    <div class="social-icon linkedin mx-auto"><i class="fab fa-linkedin-in"></i></div>
-                    <p class="text-sm font-semibold mt-2 text-white">LinkedIn</p>
-                    <p class="text-xs text-gray-400">450K Followers</p>
-                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Follow</span>
-                </a>
-                <a href="#" target="_blank" class="glass-card rounded-xl p-4 text-center group reveal" style="transition-delay: 0.5s;">
-                    <div class="social-icon discord mx-auto"><i class="fab fa-discord"></i></div>
-                    <p class="text-sm font-semibold mt-2 text-white">Discord</p>
-                    <p class="text-xs text-gray-400">32K Members</p>
-                    <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 group-hover:bg-purple-500/30 transition">Join</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── APPS PREVIEW ─── -->
-    <section id="apps" class="section-padding">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="section-tag">Apps I Recommend</span>
-                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Tools That Power My Workflow</h2>
-                <p class="text-gray-400 mt-3">Personally tested apps every creator should have.</p>
-            </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="app-card reveal">
-                    <div class="flex items-center gap-4"><div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center text-2xl">🎬</div><div><h4 class="font-semibold text-white">CapCut</h4><p class="text-xs text-gray-400">Video Editing</p></div></div>
-                    <p class="text-sm text-gray-300 mt-3">My go-to for editing shorts and reels. Intuitive and powerful.</p>
-                    <div class="flex items-center gap-2 mt-3"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.8</span><span class="text-xs text-gray-400">(2.3M reviews)</span></div>
-                    <a href="apps.html" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition-all hover:gap-3">View Details <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="app-card reveal" style="transition-delay: 0.1s;">
-                    <div class="flex items-center gap-4"><div class="w-14 h-14 rounded-xl bg-pink-500/20 flex items-center justify-center text-2xl">📸</div><div><h4 class="font-semibold text-white">Lightroom</h4><p class="text-xs text-gray-400">Photo Editing</p></div></div>
-                    <p class="text-sm text-gray-300 mt-3">Professional-grade photo editing with presets that save hours.</p>
-                    <div class="flex items-center gap-2 mt-3"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.7</span><span class="text-xs text-gray-400">(1.8M reviews)</span></div>
-                    <a href="apps.html" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition-all hover:gap-3">View Details <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="app-card reveal" style="transition-delay: 0.2s;">
-                    <div class="flex items-center gap-4"><div class="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center text-2xl">🤖</div><div><h4 class="font-semibold text-white">ChatGPT</h4><p class="text-xs text-gray-400">AI Assistant</p></div></div>
-                    <p class="text-sm text-gray-300 mt-3">Brainstorming content ideas, scripts, and captions with AI.</p>
-                    <div class="flex items-center gap-2 mt-3"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.9</span><span class="text-xs text-gray-400">(5M+ reviews)</span></div>
-                    <a href="apps.html" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition-all hover:gap-3">View Details <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="app-card reveal" style="transition-delay: 0.3s;">
-                    <div class="flex items-center gap-4"><div class="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center text-2xl">📊</div><div><h4 class="font-semibold text-white">Notion</h4><p class="text-xs text-gray-400">Productivity</p></div></div>
-                    <p class="text-sm text-gray-300 mt-3">All-in-one workspace for planning, tracking, and managing.</p>
-                    <div class="flex items-center gap-2 mt-3"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.6</span><span class="text-xs text-gray-400">(1.2M reviews)</span></div>
-                    <a href="apps.html" class="inline-flex items-center gap-2 text-purple-400 text-sm mt-3 hover:text-purple-300 transition-all hover:gap-3">View Details <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── PRODUCTS ─── -->
-    <section id="products" class="section-padding bg-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="section-tag">Gear &amp; Tools</span>
-                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Products I Trust</h2>
-                <p class="text-gray-400 mt-3">Every product I recommend has been personally tested.</p>
-            </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="product-card relative reveal">
-                    <div class="relative"><div class="w-full aspect-square rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-5xl">📷</div><span class="badge badge-best">BEST SELLER</span></div>
-                    <h4 class="font-semibold text-white mt-3">Sony A7 IV</h4>
-                    <p class="text-sm text-gray-400">Mirrorless Camera</p>
-                    <div class="flex items-center gap-2 mt-1"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.9</span><span class="text-xs text-gray-400">(850 reviews)</span></div>
-                    <div class="flex items-center justify-between mt-3"><span class="text-lg font-bold text-white">$2,498</span><a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a></div>
-                </div>
-                <div class="product-card relative reveal" style="transition-delay: 0.1s;">
-                    <div class="relative"><div class="w-full aspect-square rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-5xl">🎙️</div><span class="badge badge-hot">⚡ HOT</span></div>
-                    <h4 class="font-semibold text-white mt-3">Shure SM7B</h4>
-                    <p class="text-sm text-gray-400">Microphone</p>
-                    <div class="flex items-center gap-2 mt-1"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.8</span><span class="text-xs text-gray-400">(620 reviews)</span></div>
-                    <div class="flex items-center justify-between mt-3"><span class="text-lg font-bold text-white">$399</span><a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a></div>
-                </div>
-                <div class="product-card relative reveal" style="transition-delay: 0.2s;">
-                    <div class="relative"><div class="w-full aspect-square rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-5xl">💻</div><span class="badge badge-pro">PRO</span></div>
-                    <h4 class="font-semibold text-white mt-3">MacBook Pro M3</h4>
-                    <p class="text-sm text-gray-400">Laptop</p>
-                    <div class="flex items-center gap-2 mt-1"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.7</span><span class="text-xs text-gray-400">(1.1k reviews)</span></div>
-                    <div class="flex items-center justify-between mt-3"><span class="text-lg font-bold text-white">$1,999</span><a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a></div>
-                </div>
-                <div class="product-card relative reveal" style="transition-delay: 0.3s;">
-                    <div class="relative"><div class="w-full aspect-square rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-5xl">💡</div><span class="badge badge-new">NEW</span></div>
-                    <h4 class="font-semibold text-white mt-3">Aputure 120D</h4>
-                    <p class="text-sm text-gray-400">Lighting Kit</p>
-                    <div class="flex items-center gap-2 mt-1"><span class="text-yellow-400 text-sm"><i class="fas fa-star"></i> 4.6</span><span class="text-xs text-gray-400">(340 reviews)</span></div>
-                    <div class="flex items-center justify-between mt-3"><span class="text-lg font-bold text-white">$1,150</span><a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── ACADEMY ─── -->
-    <section id="academy" class="section-padding">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="section-tag">Education</span>
-                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Social Media Growth Academy</h2>
-                <p class="text-gray-400 mt-3">Actionable strategies to grow your brand across every platform.</p>
+                <span class="section-tag">Join the Movement</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Our Community</h2>
+                <p class="text-gray-400 mt-3">Connect with like-minded creators and grow together.</p>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <a href="academy.html" class="glass-card rounded-xl p-5 group reveal">
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-xl group-hover:bg-purple-500/30 transition">📱</div>
-                    <h4 class="font-semibold text-white mt-3">Instagram Growth</h4>
-                    <p class="text-sm text-gray-400">Reels, Stories, and engagement hacks.</p>
-                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Learn More →</span>
+                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-green-500/20 flex items-center justify-center text-3xl group-hover:bg-green-500/30 transition-all group-hover:scale-110">💬</div>
+                    <h4 class="font-semibold text-white mt-3">WhatsApp Community</h4>
+                    <p class="text-sm text-gray-400">Daily tips &amp; support</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Join Now →</span>
                 </a>
-                <a href="academy.html" class="glass-card rounded-xl p-5 group reveal" style="transition-delay: 0.1s;">
-                    <div class="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center text-xl group-hover:bg-red-500/30 transition">▶️</div>
-                    <h4 class="font-semibold text-white mt-3">YouTube Growth</h4>
-                    <p class="text-sm text-gray-400">CTR, retention, and viral strategy.</p>
-                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Learn More →</span>
+                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-blue-500/20 flex items-center justify-center text-3xl group-hover:bg-blue-500/30 transition-all group-hover:scale-110">✈️</div>
+                    <h4 class="font-semibold text-white mt-3">Telegram Group</h4>
+                    <p class="text-sm text-gray-400">Exclusive content &amp; updates</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Join Now →</span>
                 </a>
-                <a href="academy.html" class="glass-card rounded-xl p-5 group reveal" style="transition-delay: 0.2s;">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-xl group-hover:bg-blue-500/30 transition">👔</div>
-                    <h4 class="font-semibold text-white mt-3">LinkedIn Growth</h4>
-                    <p class="text-sm text-gray-400">Personal branding for professionals.</p>
-                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Learn More →</span>
+                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-indigo-500/20 flex items-center justify-center text-3xl group-hover:bg-indigo-500/30 transition-all group-hover:scale-110">🎮</div>
+                    <h4 class="font-semibold text-white mt-3">Discord Server</h4>
+                    <p class="text-sm text-gray-400">Live discussions &amp; events</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Join Now →</span>
                 </a>
-                <a href="academy.html" class="glass-card rounded-xl p-5 group reveal" style="transition-delay: 0.3s;">
-                    <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-xl group-hover:bg-pink-500/30 transition">🎵</div>
-                    <h4 class="font-semibold text-white mt-3">Reels &amp; Shorts</h4>
-                    <p class="text-sm text-gray-400">Short-form video that converts.</p>
-                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Learn More →</span>
+                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal" style="transition-delay: 0.3s;">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-purple-500/20 flex items-center justify-center text-3xl group-hover:bg-purple-500/30 transition-all group-hover:scale-110">📧</div>
+                    <h4 class="font-semibold text-white mt-3">Newsletter</h4>
+                    <p class="text-sm text-gray-400">Weekly tips &amp; resources</p>
+                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Subscribe →</span>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- ─── BOOK ─── -->
-    <section id="book" class="section-padding bg-white/5">
+    <section id="book" class="section-padding">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <span class="section-tag">Work With Me</span>
@@ -950,73 +1635,8 @@
         </div>
     </section>
 
-    <!-- ─── TESTIMONIALS ─── -->
-    <section id="testimonials" class="section-padding">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="section-tag">Testimonials</span>
-                <h2 class="text-3xl sm:text-4xl font-bold mt-2">What People Are Saying</h2>
-                <p class="text-gray-400 mt-3">Real stories from creators and brands I've worked with.</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="testimonial-card reveal">
-                    <div class="flex items-center gap-3"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">JD</div><div><h4 class="font-semibold text-white">James Davis</h4><p class="text-xs text-gray-400">Content Creator, 500K+ followers</p></div></div>
-                    <div class="flex text-yellow-400 mt-3 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 mt-2 text-sm">"Alex completely transformed my content strategy. Within 3 months, my Instagram grew from 80K to 500K. Absolute game-changer!"</p>
-                </div>
-                <div class="testimonial-card reveal" style="transition-delay: 0.1s;">
-                    <div class="flex items-center gap-3"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">SM</div><div><h4 class="font-semibold text-white">Sarah Mitchell</h4><p class="text-xs text-gray-400">Digital Marketer &amp; Course Creator</p></div></div>
-                    <div class="flex text-yellow-400 mt-3 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 mt-2 text-sm">"The brand consultation was worth every penny. Alex helped me land my first 5-figure sponsorship deal."</p>
-                </div>
-                <div class="testimonial-card reveal" style="transition-delay: 0.2s;">
-                    <div class="flex items-center gap-3"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center text-white font-bold">MR</div><div><h4 class="font-semibold text-white">Mike Rodriguez</h4><p class="text-xs text-gray-400">Tech YouTuber, 1.2M subscribers</p></div></div>
-                    <div class="flex text-yellow-400 mt-3 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-300 mt-2 text-sm">"Alex's coaching helped me double my YouTube revenue in 60 days. The best investment I've made in my creator career."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── COMMUNITY ─── -->
-    <section id="community" class="section-padding bg-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="section-tag">Join the Movement</span>
-                <h2 class="text-3xl sm:text-4xl font-bold mt-2">Our Community</h2>
-                <p class="text-gray-400 mt-3">Connect with like-minded creators and grow together.</p>
-            </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-green-500/20 flex items-center justify-center text-3xl group-hover:bg-green-500/30 transition-all group-hover:scale-110">💬</div>
-                    <h4 class="font-semibold text-white mt-3">WhatsApp Community</h4>
-                    <p class="text-sm text-gray-400">Daily tips &amp; support</p>
-                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Join Now →</span>
-                </a>
-                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal" style="transition-delay: 0.1s;">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-blue-500/20 flex items-center justify-center text-3xl group-hover:bg-blue-500/30 transition-all group-hover:scale-110">✈️</div>
-                    <h4 class="font-semibold text-white mt-3">Telegram Group</h4>
-                    <p class="text-sm text-gray-400">Exclusive content &amp; updates</p>
-                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Join Now →</span>
-                </a>
-                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal" style="transition-delay: 0.2s;">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-indigo-500/20 flex items-center justify-center text-3xl group-hover:bg-indigo-500/30 transition-all group-hover:scale-110">🎮</div>
-                    <h4 class="font-semibold text-white mt-3">Discord Server</h4>
-                    <p class="text-sm text-gray-400">Live discussions &amp; events</p>
-                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Join Now →</span>
-                </a>
-                <a href="#" class="glass-card rounded-xl p-6 text-center group reveal" style="transition-delay: 0.3s;">
-                    <div class="w-16 h-16 mx-auto rounded-full bg-purple-500/20 flex items-center justify-center text-3xl group-hover:bg-purple-500/30 transition-all group-hover:scale-110">📧</div>
-                    <h4 class="font-semibold text-white mt-3">Newsletter</h4>
-                    <p class="text-sm text-gray-400">Weekly tips &amp; resources</p>
-                    <span class="inline-block mt-3 text-purple-400 text-sm group-hover:text-purple-300 group-hover:translate-x-1 transition-all">Subscribe →</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- ─── CONTACT ─── -->
-    <section id="contact" class="section-padding">
+    <section id="contact" class="section-padding bg-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <span class="section-tag">Get in Touch</span>
@@ -1068,7 +1688,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid sm:grid-cols-2 md:grid-cols-5 gap-8">
                 <div class="md:col-span-2">
-                    <h4 class="text-lg font-bold gradient-text">Alex Morgan</h4>
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="logo-icon">A</div>
+                        <h4 class="text-lg font-bold gradient-text">Alex Morgan</h4>
+                    </div>
                     <p class="text-sm text-gray-400 mt-2 max-w-sm">Helping creators build empires through app promotions, affiliate marketing, and strategic brand collaborations.</p>
                     <div class="flex gap-3 mt-4">
                         <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-youtube"></i></a>
@@ -1187,7 +1810,7 @@
                 body.style.background = '#0b0d12';
                 body.style.color = '#e8edf5';
                 document.querySelectorAll('.theme-toggle i').forEach(el => el.className = 'fas fa-moon');
-                document.querySelectorAll('.glass-card, .app-card, .product-card, .blog-card, .testimonial-card').forEach(el => {
+                document.querySelectorAll('.glass-card, .tool-card, .testimonial-item, .brand-logo, .product-carousel-item').forEach(el => {
                     el.style.background = 'rgba(255, 255, 255, 0.03)';
                     el.style.borderColor = 'rgba(255, 255, 255, 0.06)';
                 });
@@ -1195,7 +1818,7 @@
                 body.style.background = '#f3f4f6';
                 body.style.color = '#1f2937';
                 document.querySelectorAll('.theme-toggle i').forEach(el => el.className = 'fas fa-sun');
-                document.querySelectorAll('.glass-card, .app-card, .product-card, .blog-card, .testimonial-card').forEach(el => {
+                document.querySelectorAll('.glass-card, .tool-card, .testimonial-item, .brand-logo, .product-carousel-item').forEach(el => {
                     el.style.background = 'rgba(255, 255, 255, 0.7)';
                     el.style.borderColor = 'rgba(0, 0, 0, 0.08)';
                 });
@@ -1219,6 +1842,204 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+        // ─── Product Carousel ───
+        let productIndex = 0;
+        const productTrack = document.getElementById('productTrack');
+        const productItems = productTrack.querySelectorAll('.product-carousel-item');
+        const productTotal = productItems.length;
+        let productVisible = 4;
+        let productAutoPlay = null;
+
+        function getProductVisible() {
+            if (window.innerWidth < 480) return 1;
+            if (window.innerWidth < 768) return 2;
+            if (window.innerWidth < 1024) return 3;
+            return 4;
+        }
+
+        function updateProductCarousel() {
+            productVisible = getProductVisible();
+            const maxIndex = Math.max(0, productTotal - productVisible);
+            if (productIndex > maxIndex) productIndex = maxIndex;
+            
+            const itemWidth = productItems[0]?.offsetWidth || 250;
+            const gap = 24;
+            const offset = productIndex * (itemWidth + gap);
+            productTrack.style.transform = `translateX(-${offset}px)`;
+            
+            const dots = document.querySelectorAll('#productDots .carousel-dot');
+            const totalDots = Math.ceil(productTotal / productVisible);
+            const activeDot = Math.floor(productIndex / productVisible);
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === activeDot);
+            });
+        }
+
+        function moveProductCarousel(direction) {
+            productVisible = getProductVisible();
+            const maxIndex = Math.max(0, productTotal - productVisible);
+            productIndex += direction * productVisible;
+            if (productIndex < 0) productIndex = 0;
+            if (productIndex > maxIndex) productIndex = maxIndex;
+            updateProductCarousel();
+            resetProductAutoPlay();
+        }
+
+        function goToProductSlide(index) {
+            productVisible = getProductVisible();
+            productIndex = index * productVisible;
+            const maxIndex = Math.max(0, productTotal - productVisible);
+            if (productIndex > maxIndex) productIndex = maxIndex;
+            updateProductCarousel();
+            resetProductAutoPlay();
+        }
+
+        function createProductDots() {
+            const container = document.getElementById('productDots');
+            container.innerHTML = '';
+            const totalDots = Math.ceil(productTotal / 4);
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('button');
+                dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => goToProductSlide(i));
+                container.appendChild(dot);
+            }
+        }
+
+        function resetProductAutoPlay() {
+            if (productAutoPlay) { clearInterval(productAutoPlay); productAutoPlay = null; }
+            startProductAutoPlay();
+        }
+
+        function startProductAutoPlay() {
+            if (productAutoPlay) clearInterval(productAutoPlay);
+            productAutoPlay = setInterval(() => {
+                productVisible = getProductVisible();
+                const maxIndex = Math.max(0, productTotal - productVisible);
+                if (productIndex >= maxIndex) { productIndex = 0; } 
+                else { productIndex += productVisible; }
+                updateProductCarousel();
+            }, 4000);
+        }
+
+        // ─── Testimonial Carousel ───
+        let testimonialIndex = 0;
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const testimonialItems = testimonialTrack.querySelectorAll('.testimonial-item');
+        const testimonialTotal = testimonialItems.length;
+        let testimonialVisible = 3;
+        let testimonialAutoPlay = null;
+
+        function getTestimonialVisible() {
+            if (window.innerWidth < 480) return 1;
+            if (window.innerWidth < 768) return 1;
+            if (window.innerWidth < 1024) return 2;
+            return 3;
+        }
+
+        function updateTestimonialCarousel() {
+            testimonialVisible = getTestimonialVisible();
+            const maxIndex = Math.max(0, testimonialTotal - testimonialVisible);
+            if (testimonialIndex > maxIndex) testimonialIndex = maxIndex;
+            
+            const itemWidth = testimonialItems[0]?.offsetWidth || 300;
+            const gap = 24;
+            const offset = testimonialIndex * (itemWidth + gap);
+            testimonialTrack.style.transform = `translateX(-${offset}px)`;
+            
+            const dots = document.querySelectorAll('#testimonialDots .carousel-dot');
+            const totalDots = Math.ceil(testimonialTotal / testimonialVisible);
+            const activeDot = Math.floor(testimonialIndex / testimonialVisible);
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === activeDot);
+            });
+        }
+
+        function moveTestimonial(direction) {
+            testimonialVisible = getTestimonialVisible();
+            const maxIndex = Math.max(0, testimonialTotal - testimonialVisible);
+            testimonialIndex += direction * testimonialVisible;
+            if (testimonialIndex < 0) testimonialIndex = 0;
+            if (testimonialIndex > maxIndex) testimonialIndex = maxIndex;
+            updateTestimonialCarousel();
+            resetTestimonialAutoPlay();
+        }
+
+        function goToTestimonialSlide(index) {
+            testimonialVisible = getTestimonialVisible();
+            testimonialIndex = index * testimonialVisible;
+            const maxIndex = Math.max(0, testimonialTotal - testimonialVisible);
+            if (testimonialIndex > maxIndex) testimonialIndex = maxIndex;
+            updateTestimonialCarousel();
+            resetTestimonialAutoPlay();
+        }
+
+        function createTestimonialDots() {
+            const container = document.getElementById('testimonialDots');
+            container.innerHTML = '';
+            const totalDots = Math.ceil(testimonialTotal / 3);
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('button');
+                dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => goToTestimonialSlide(i));
+                container.appendChild(dot);
+            }
+        }
+
+        function resetTestimonialAutoPlay() {
+            if (testimonialAutoPlay) { clearInterval(testimonialAutoPlay); testimonialAutoPlay = null; }
+            startTestimonialAutoPlay();
+        }
+
+        function startTestimonialAutoPlay() {
+            if (testimonialAutoPlay) clearInterval(testimonialAutoPlay);
+            testimonialAutoPlay = setInterval(() => {
+                testimonialVisible = getTestimonialVisible();
+                const maxIndex = Math.max(0, testimonialTotal - testimonialVisible);
+                if (testimonialIndex >= maxIndex) { testimonialIndex = 0; } 
+                else { testimonialIndex += testimonialVisible; }
+                updateTestimonialCarousel();
+            }, 5000);
+        }
+
+        // ─── Video Play Function ───
+        function playVideo(wrapper) {
+            const video = wrapper.querySelector('video');
+            const playBtn = wrapper.querySelector('.play-btn');
+            if (video.paused) {
+                // Pause all other videos first
+                document.querySelectorAll('.video-wrapper video').forEach(v => {
+                    if (v !== video && !v.paused) { v.pause(); }
+                });
+                document.querySelectorAll('.video-wrapper .play-btn').forEach(btn => {
+                    if (btn !== playBtn) { btn.innerHTML = '<i class="fas fa-play"></i>'; }
+                });
+                
+                video.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                video.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
+        // ─── Initialize ───
+        window.addEventListener('load', () => {
+            createProductDots();
+            createTestimonialDots();
+            setTimeout(() => {
+                updateProductCarousel();
+                updateTestimonialCarousel();
+                startProductAutoPlay();
+                startTestimonialAutoPlay();
+            }, 100);
+        });
+
+        window.addEventListener('resize', () => {
+            updateProductCarousel();
+            updateTestimonialCarousel();
+        });
+
         // ─── Smooth Anchor Links ───
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1232,7 +2053,13 @@
 
         console.log('🚀 Home Page Loaded Successfully!');
         console.log('📸 Profile image added to hero section');
-        console.log('📄 All pages: Home, About, Services, Apps, Products, Academy, Referral, Booking, Contact');
+        console.log('🏷️ Logo added to navbar and footer');
+        console.log('🤝 10+ Brand logos added');
+        console.log('🔄 Auto-sliding product carousel');
+        console.log('📱 Real Social Media Hub with 12 platforms');
+        console.log('🛠️ 8 Real Tools That Power My Workflow');
+        console.log('🎥 Auto-sliding Testimonials with Video (3 video + 3 text)');
+        console.log('📄 All pages linked properly');
     </script>
 </body>
 </html>
