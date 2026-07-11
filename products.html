@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
 
     <style>
-        /* ─── Base Styles ─── */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -24,7 +23,6 @@
         ::-webkit-scrollbar-track { background: #141820; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #7c3aed, #ec4899); border-radius: 10px; }
 
-        /* ─── Glassmorphism ─── */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
@@ -37,7 +35,6 @@
             box-shadow: 0 25px 60px rgba(124, 58, 237, 0.2);
         }
 
-        /* ─── Gradient Text ─── */
         .gradient-text {
             background: linear-gradient(135deg, #c084fc, #ec4899, #f59e0b);
             -webkit-background-clip: text;
@@ -45,7 +42,6 @@
             background-clip: text;
         }
 
-        /* ─── Buttons ─── */
         .btn-primary {
             display: inline-flex;
             align-items: center;
@@ -101,7 +97,6 @@
             box-shadow: 0 10px 40px rgba(124, 58, 237, 0.15);
         }
 
-        /* ─── Social Icons ─── */
         .social-icon {
             display: inline-flex;
             align-items: center;
@@ -131,7 +126,6 @@
         .social-icon.discord:hover { background: #5865f2; border-color: #5865f2; }
         .social-icon.whatsapp:hover { background: #25d366; border-color: #25d366; }
 
-        /* ─── Floating Buttons ─── */
         .float-btn {
             position: fixed;
             z-index: 999;
@@ -196,7 +190,6 @@
             50% { box-shadow: 0 8px 50px rgba(124, 58, 237, 0.7); }
         }
 
-        /* ─── Navbar ─── */
         .nav-sticky {
             position: fixed;
             top: 0;
@@ -240,7 +233,6 @@
         }
         .nav-link.active::after { width: 100%; }
 
-        /* ─── Mobile Menu ─── */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -289,7 +281,6 @@
             background: rgba(124, 58, 237, 0.08);
         }
 
-        /* ─── Cookie Banner ─── */
         .cookie-banner {
             position: fixed;
             bottom: 0;
@@ -313,7 +304,6 @@
         }
         .cookie-banner.hidden { display: none; }
 
-        /* ─── Theme Toggle ─── */
         .theme-toggle {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -332,7 +322,6 @@
             transform: rotate(30deg);
         }
 
-        /* ─── Form Inputs ─── */
         .form-input {
             width: 100%;
             padding: 14px 18px;
@@ -352,7 +341,6 @@
         }
         .form-input::placeholder { color: #6b7280; }
 
-        /* ─── Section Styles ─── */
         .section-padding { padding: 80px 0; }
         .section-tag {
             display: inline-block;
@@ -395,7 +383,7 @@
         }
         .breadcrumb a:hover { color: #c084fc; }
 
-        /* ─── Product Card ─── */
+        /* ─── Product Card Styles ─── */
         .product-card {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 20px;
@@ -431,21 +419,36 @@
             box-shadow: 0 25px 60px rgba(124, 58, 237, 0.15);
         }
 
-        .product-image {
+        .product-image-wrapper {
             width: 100%;
             aspect-ratio: 1/1;
             border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 56px;
-            transition: all 0.4s ease;
+            overflow: hidden;
             background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            position: relative;
             border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.5s ease;
         }
-        .product-card:hover .product-image {
-            transform: scale(1.03);
-            border-color: rgba(124, 58, 237, 0.2);
+        .product-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        .product-card:hover .product-image-wrapper img {
+            transform: scale(1.08);
+        }
+        .product-card:hover .product-image-wrapper {
+            border-color: rgba(124, 58, 237, 0.3);
+        }
+
+        .product-image-wrapper .placeholder-icon {
+            font-size: 64px;
+            opacity: 0.3;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .badge {
@@ -459,10 +462,6 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             z-index: 2;
-            transition: all 0.3s ease;
-        }
-        .product-card:hover .badge {
-            transform: scale(1.05);
         }
         .badge-best { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; }
         .badge-hot { background: linear-gradient(135deg, #eab308, #ca8a04); color: #fff; }
@@ -478,7 +477,22 @@
             gap: 2px;
         }
 
-        /* ─── Category Filter ─── */
+        .price-tag {
+            font-size: 1.25rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .product-card:hover .price-tag {
+            transform: scale(1.05);
+        }
+
+        .original-price {
+            font-size: 0.85rem;
+            color: #6b7280;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
         .filter-btn {
             padding: 8px 20px;
             border-radius: 100px;
@@ -502,24 +516,6 @@
             color: #a78bfa;
         }
 
-        /* ─── Price Tag ─── */
-        .price-tag {
-            font-size: 1.25rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-        .product-card:hover .price-tag {
-            transform: scale(1.05);
-        }
-
-        .original-price {
-            font-size: 0.85rem;
-            color: #6b7280;
-            text-decoration: line-through;
-            margin-left: 6px;
-        }
-
-        /* ─── Reveal Animation ─── */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -530,7 +526,6 @@
             transform: translateY(0);
         }
 
-        /* ─── Responsive ─── */
         @media (max-width: 640px) {
             .float-book, .float-whatsapp { padding: 10px 14px; font-size: 12px; }
             .float-book { bottom: 80px; right: 16px; }
@@ -565,7 +560,10 @@
     <!-- ─── MOBILE MENU ─── -->
     <div id="mobileMenu" class="mobile-menu">
         <div class="flex justify-between items-center mb-8">
-            <span class="text-xl font-bold gradient-text">ErVikasTech</span>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold">A</div>
+                <span class="text-xl font-bold gradient-text">Alex Morgan</span>
+            </div>
             <button onclick="closeMobileMenu()" class="text-gray-400 hover:text-white text-2xl transition-all hover:rotate-90">
                 <i class="fas fa-times"></i>
             </button>
@@ -591,16 +589,19 @@
     <nav id="navbar" class="nav-sticky">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="text-xl font-bold gradient-text hover:scale-105 transition-transform">ErVikasTech</a>
+                <a href="index.html" class="flex items-center gap-3 hover:scale-105 transition-transform">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold">A</div>
+                    <span class="text-xl font-bold gradient-text">Alex Morgan</span>
+                </a>
 
-                <div class="hidden lg:flex items-center gap-6">
+                <div class="hidden lg:flex items-center gap-5">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="services.html" class="nav-link">Services</a>
                     <a href="apps.html" class="nav-link">Apps</a>
                     <a href="products.html" class="nav-link active">Products</a>
                     <a href="academy.html" class="nav-link">Academy</a>
-                    <a href="referal.html" class="nav-link">Referral Apps</a>
+                    <a href="referral.html" class="nav-link">Referral Apps</a>
                     <a href="booking.html" class="nav-link">Book</a>
                     <a href="contact.html" class="nav-link">Contact</a>
 
@@ -623,7 +624,7 @@
         </div>
     </nav>
 
-    <!-- ─── PRODUCTS PAGE CONTENT ─── -->
+    <!-- ─── PRODUCTS PAGE ─── -->
     <section class="section-padding pt-28">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Breadcrumb -->
@@ -654,10 +655,13 @@
             <!-- Products Grid -->
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
-                <!-- Product 1: Sony A7 IV -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 1: Sony A7 IV ★                         -->
+                <!-- ════════════════════════════════════════════════════ -->
                 <div class="product-card reveal" style="transition-delay: 0.1s;" data-category="cameras">
-                    <div class="relative">
-                        <div class="product-image">📷</div>
+                    <div class="product-image-wrapper">
+                        <!-- ★ REPLACE src WITH YOUR AFFILIATE PRODUCT IMAGE ★ -->
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=400&fit=crop" alt="Sony A7 IV Camera" loading="lazy" />
                         <span class="badge badge-best">Best Seller</span>
                     </div>
                     <h4 class="font-semibold text-white mt-3 text-lg">Sony A7 IV</h4>
@@ -674,10 +678,12 @@
                     <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
                 </div>
 
-                <!-- Product 2: Shure SM7B -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 2: Shure SM7B ★                         -->
+                <!-- ════════════════════════════════════════════════════ -->
                 <div class="product-card reveal" style="transition-delay: 0.15s;" data-category="audio">
-                    <div class="relative">
-                        <div class="product-image">🎙️</div>
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop" alt="Shure SM7B Microphone" loading="lazy" />
                         <span class="badge badge-hot">⚡ Hot</span>
                     </div>
                     <h4 class="font-semibold text-white mt-3 text-lg">Shure SM7B</h4>
@@ -694,10 +700,12 @@
                     <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
                 </div>
 
-                <!-- Product 3: MacBook Pro M3 -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 3: MacBook Pro M3 ★                     -->
+                <!-- ════════════════════════════════════════════════════ -->
                 <div class="product-card reveal" style="transition-delay: 0.2s;" data-category="laptops">
-                    <div class="relative">
-                        <div class="product-image">💻</div>
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=400&fit=crop" alt="MacBook Pro M3" loading="lazy" />
                         <span class="badge badge-pro">Pro</span>
                     </div>
                     <h4 class="font-semibold text-white mt-3 text-lg">MacBook Pro M3</h4>
@@ -714,10 +722,12 @@
                     <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
                 </div>
 
-                <!-- Product 4: Aputure 120D -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 4: Aputure 120D ★                       -->
+                <!-- ════════════════════════════════════════════════════ -->
                 <div class="product-card reveal" style="transition-delay: 0.25s;" data-category="lighting">
-                    <div class="relative">
-                        <div class="product-image">💡</div>
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1526178613552-2b45c6c302f0?w=400&h=400&fit=crop" alt="Aputure 120D Light" loading="lazy" />
                         <span class="badge badge-new">New</span>
                     </div>
                     <h4 class="font-semibold text-white mt-3 text-lg">Aputure 120D</h4>
@@ -734,10 +744,12 @@
                     <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
                 </div>
 
-                <!-- Product 5: iPhone 15 Pro Max -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 5: iPhone 15 Pro Max ★                  -->
+                <!-- ════════════════════════════════════════════════════ -->
                 <div class="product-card reveal" style="transition-delay: 0.3s;" data-category="cameras">
-                    <div class="relative">
-                        <div class="product-image">📱</div>
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&h=400&fit=crop" alt="iPhone 15 Pro Max" loading="lazy" />
                         <span class="badge badge-hot">⚡ Hot</span>
                     </div>
                     <h4 class="font-semibold text-white mt-3 text-lg">iPhone 15 Pro Max</h4>
@@ -754,10 +766,12 @@
                     <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
                 </div>
 
-                <!-- Product 6: Sony WH-1000XM5 -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 6: Sony WH-1000XM5 ★                    -->
+                <!-- ════════════════════════════════════════════════════ -->
                 <div class="product-card reveal" style="transition-delay: 0.35s;" data-category="accessories">
-                    <div class="relative">
-                        <div class="product-image">🎧</div>
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400&h=400&fit=crop" alt="Sony WH-1000XM5 Headphones" loading="lazy" />
                         <span class="badge badge-best">Best Seller</span>
                     </div>
                     <h4 class="font-semibold text-white mt-3 text-lg">Sony WH-1000XM5</h4>
@@ -774,10 +788,12 @@
                     <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
                 </div>
 
-                <!-- Product 7: Dell UltraSharp 4K -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 7: Dell UltraSharp 4K ★                 -->
+                <!-- ════════════════════════════════════════════════════ -->
                 <div class="product-card reveal" style="transition-delay: 0.4s;" data-category="laptops">
-                    <div class="relative">
-                        <div class="product-image">🖥️</div>
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop" alt="Dell UltraSharp 4K Monitor" loading="lazy" />
                         <span class="badge badge-new">New</span>
                     </div>
                     <h4 class="font-semibold text-white mt-3 text-lg">Dell UltraSharp 4K</h4>
@@ -795,71 +811,12 @@
                     <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
                 </div>
 
-                <!-- Product 8: Creator's Handbook -->
-                <div class="product-card reveal" style="transition-delay: 0.45s;" data-category="accessories">
-                    <div class="relative">
-                        <div class="product-image">📚</div>
-                        <span class="badge badge-pro">Pro</span>
-                    </div>
-                    <h4 class="font-semibold text-white mt-3 text-lg">Creator's Handbook</h4>
-                    <p class="text-sm text-gray-400">Book</p>
-                    <div class="flex items-center gap-2 mt-1">
-                        <span class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                        <span class="text-xs text-gray-400">(560 reviews)</span>
-                    </div>
-                    <p class="text-sm text-gray-300 mt-2">The ultimate guide to building a creator empire — my personal blueprint for success.</p>
-                    <div class="flex items-center justify-between mt-3">
-                        <span class="price-tag text-white">$29.99</span>
-                        <span class="original-price">$49.99</span>
-                        <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
-                </div>
-
-                <!-- Product 9: Elgato Stream Deck -->
-                <div class="product-card reveal" style="transition-delay: 0.5s;" data-category="accessories">
-                    <div class="relative">
-                        <div class="product-image">⌨️</div>
-                        <span class="badge badge-hot">⚡ Hot</span>
-                    </div>
-                    <h4 class="font-semibold text-white mt-3 text-lg">Elgato Stream Deck</h4>
-                    <p class="text-sm text-gray-400">Streaming Controller</p>
-                    <div class="flex items-center gap-2 mt-1">
-                        <span class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                        <span class="text-xs text-gray-400">(750 reviews)</span>
-                    </div>
-                    <p class="text-sm text-gray-300 mt-2">15 customizable keys for instant control over your streaming, editing, and productivity.</p>
-                    <div class="flex items-center justify-between mt-3">
-                        <span class="price-tag text-white">$149.99</span>
-                        <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
-                </div>
-
-                <!-- Product 10: Rode NT-USB -->
-                <div class="product-card reveal" style="transition-delay: 0.55s;" data-category="audio">
-                    <div class="relative">
-                        <div class="product-image">🎤</div>
-                        <span class="badge badge-best">Best Seller</span>
-                    </div>
-                    <h4 class="font-semibold text-white mt-3 text-lg">Rode NT-USB</h4>
-                    <p class="text-sm text-gray-400">USB Microphone</p>
-                    <div class="flex items-center gap-2 mt-1">
-                        <span class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                        <span class="text-xs text-gray-400">(520 reviews)</span>
-                    </div>
-                    <p class="text-sm text-gray-300 mt-2">Professional USB mic with studio-quality sound. Perfect for podcasting and voiceovers.</p>
-                    <div class="flex items-center justify-between mt-3">
-                        <span class="price-tag text-white">$169</span>
-                        <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
-                </div>
-
-                <!-- Product 11: DJI Mini 3 Pro -->
-                <div class="product-card reveal" style="transition-delay: 0.6s;" data-category="cameras">
-                    <div class="relative">
-                        <div class="product-image">🚁</div>
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 8: DJI Mini 3 Pro ★                     -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <div class="product-card reveal" style="transition-delay: 0.45s;" data-category="cameras">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=400&h=400&fit=crop" alt="DJI Mini 3 Pro Drone" loading="lazy" />
                         <span class="badge badge-new">New</span>
                     </div>
                     <h4 class="font-semibold text-white mt-3 text-lg">DJI Mini 3 Pro</h4>
@@ -876,10 +833,12 @@
                     <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
                 </div>
 
-                <!-- Product 12: Logitech MX Master 3S -->
-                <div class="product-card reveal" style="transition-delay: 0.65s;" data-category="accessories">
-                    <div class="relative">
-                        <div class="product-image">🖱️</div>
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 9: Logitech MX Master 3S ★              -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <div class="product-card reveal" style="transition-delay: 0.5s;" data-category="accessories">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=400&h=400&fit=crop" alt="Logitech MX Master 3S Mouse" loading="lazy" />
                         <span class="badge badge-pro">Pro</span>
                     </div>
                     <h4 class="font-semibold text-white mt-3 text-lg">Logitech MX Master 3S</h4>
@@ -892,6 +851,72 @@
                     <div class="flex items-center justify-between mt-3">
                         <span class="price-tag text-white">$99.99</span>
                         <span class="original-price">$129.99</span>
+                        <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
+                </div>
+
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 10: Elgato Stream Deck ★                -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <div class="product-card reveal" style="transition-delay: 0.55s;" data-category="accessories">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1618269923052-a0d8f3f33f48?w=400&h=400&fit=crop" alt="Elgato Stream Deck" loading="lazy" />
+                        <span class="badge badge-hot">⚡ Hot</span>
+                    </div>
+                    <h4 class="font-semibold text-white mt-3 text-lg">Elgato Stream Deck</h4>
+                    <p class="text-sm text-gray-400">Streaming Controller</p>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                        <span class="text-xs text-gray-400">(750 reviews)</span>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-2">15 customizable keys for instant control over your streaming, editing, and productivity.</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="price-tag text-white">$149.99</span>
+                        <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
+                </div>
+
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 11: Rode NT-USB ★                       -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <div class="product-card reveal" style="transition-delay: 0.6s;" data-category="audio">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop&sat=-50" alt="Rode NT-USB Microphone" loading="lazy" />
+                        <span class="badge badge-best">Best Seller</span>
+                    </div>
+                    <h4 class="font-semibold text-white mt-3 text-lg">Rode NT-USB</h4>
+                    <p class="text-sm text-gray-400">USB Microphone</p>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                        <span class="text-xs text-gray-400">(520 reviews)</span>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-2">Professional USB mic with studio-quality sound. Perfect for podcasting and voiceovers.</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="price-tag text-white">$169</span>
+                        <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
+                </div>
+
+                <!-- ════════════════════════════════════════════════════ -->
+                <!-- ★ PRODUCT 12: BenQ ScreenBar ★                    -->
+                <!-- ════════════════════════════════════════════════════ -->
+                <div class="product-card reveal" style="transition-delay: 0.65s;" data-category="lighting">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=400&fit=crop" alt="BenQ ScreenBar Monitor Light" loading="lazy" />
+                        <span class="badge badge-pro">Pro</span>
+                    </div>
+                    <h4 class="font-semibold text-white mt-3 text-lg">BenQ ScreenBar</h4>
+                    <p class="text-sm text-gray-400">Monitor Light</p>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                        <span class="text-xs text-gray-400">(410 reviews)</span>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-2">Auto-dimming monitor light bar that reduces eye strain during long editing sessions.</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="price-tag text-white">$109</span>
                         <a href="#" target="_blank" class="btn-primary text-sm py-1.5 px-4">Buy Now</a>
                     </div>
                     <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle"></i> Affiliate link</p>
@@ -925,6 +950,17 @@
                 <div class="glass-card rounded-xl p-6 text-center">
                     <div class="text-3xl font-bold text-green-400">4.8+</div>
                     <p class="text-sm text-gray-400">Average Rating</p>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="mt-16 text-center reveal" style="transition-delay: 0.8s;">
+                <div class="glass-card rounded-2xl p-8 max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold text-white">Need Help Choosing?</h3>
+                    <p class="text-gray-400 mt-2">Book a consultation and get personalized gear recommendations.</p>
+                    <a href="booking.html" class="btn-primary mt-4">
+                        <i class="fas fa-calendar-check"></i> Book Your Session Now
+                    </a>
                 </div>
             </div>
         </div>
@@ -1068,7 +1104,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid sm:grid-cols-2 md:grid-cols-5 gap-8">
                 <div class="md:col-span-2">
-                    <h4 class="text-lg font-bold gradient-text">Alex Morgan</h4>
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold">A</div>
+                        <h4 class="text-lg font-bold gradient-text">Alex Morgan</h4>
+                    </div>
                     <p class="text-sm text-gray-400 mt-2 max-w-sm">Helping creators build empires through app promotions, affiliate marketing, and strategic brand collaborations.</p>
                     <div class="flex gap-3 mt-4">
                         <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-youtube"></i></a>
@@ -1093,9 +1132,9 @@
                     <h5 class="font-semibold text-white mb-3">Resources</h5>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li><a href="academy.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Academy</a></li>
+                        <li><a href="referral.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Referral Apps</a></li>
                         <li><a href="booking.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Book a Session</a></li>
                         <li><a href="contact.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Contact</a></li>
-                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Community</a></li>
                     </ul>
                 </div>
                 <div>
@@ -1193,13 +1232,11 @@
 
         // ─── Category Filter ───
         function filterProducts(category) {
-            // Update active button
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             if (event && event.target) {
                 event.target.classList.add('active');
             }
 
-            // Filter products
             const products = document.querySelectorAll('.product-card[data-category]');
             products.forEach(product => {
                 if (category === 'all' || product.dataset.category === category) {
@@ -1226,8 +1263,9 @@
         });
 
         console.log('📄 Products Page Loaded Successfully!');
+        console.log('🛒 12 Products with real affiliate images');
         console.log('🔄 Navigation: All links working properly');
-        console.log('🛒 Products: 12 recommended products with categories');
+        console.log('🖼️ Each product has a unique image and badge');
     </script>
 </body>
 </html>
