@@ -396,6 +396,15 @@
         }
         .breadcrumb a:hover { color: #c084fc; }
 
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         /* ─── Timeline ─── */
         .timeline-item {
             display: flex;
@@ -449,25 +458,93 @@
             transform: scale(1.2) rotate(-5deg);
         }
 
-        /* ─── Stats Number ─── */
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #c084fc, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* ─── Video Wrapper ─── */
+        .video-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.5s ease;
         }
-
-        /* ─── Reveal Animation ─── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        .video-wrapper:hover {
+            border-color: rgba(124, 58, 237, 0.4);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
+            transform: scale(1.01);
         }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-wrapper .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(124, 58, 237, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            z-index: 2;
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+        }
+        .video-wrapper .play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(124, 58, 237, 1);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.6);
+        }
+        .video-wrapper .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+        .video-wrapper:hover .video-overlay {
+            background: rgba(0,0,0,0.1);
+        }
+        .video-wrapper .duration-badge {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 500;
+            z-index: 2;
+            backdrop-filter: blur(4px);
+        }
+        .video-wrapper .video-title-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 24px 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            z-index: 2;
+        }
+        .video-wrapper .video-title-overlay h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        .video-wrapper .video-title-overlay p {
+            font-size: 0.85rem;
+            color: #9ca3af;
         }
 
         /* ─── Brand Tag ─── */
@@ -509,6 +586,17 @@
             transform: translateY(-2px) scale(1.02);
         }
 
+        /* ─── Reveal Animation ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* ─── Responsive ─── */
         @media (max-width: 640px) {
             .stat-number { font-size: 1.8rem; }
@@ -520,8 +608,19 @@
             .cookie-banner { flex-direction: column; text-align: center; padding: 16px 20px; }
             .section-padding { padding: 50px 0; }
             .timeline-year { width: 44px; height: 44px; font-size: 0.75rem; }
+            .video-wrapper .play-btn { width: 56px; height: 56px; font-size: 22px; }
+            .video-wrapper .video-title-overlay h3 { font-size: 0.95rem; }
         }
         @media (min-width: 1024px) { .section-padding { padding: 80px 0; } }
+
+        /* ─── Pulse Animation for Video ─── */
+        @keyframes pulse-ring {
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+            100% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 0 20px rgba(124, 58, 237, 0); }
+        }
+        .video-wrapper .play-btn.pulse {
+            animation: pulse-ring 2s ease-in-out infinite;
+        }
     </style>
 </head>
 <body>
@@ -545,7 +644,10 @@
     <!-- ─── MOBILE MENU ─── -->
     <div id="mobileMenu" class="mobile-menu">
         <div class="flex justify-between items-center mb-8">
-            <span class="text-xl font-bold gradient-text">ErVikasTech</span>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold">A</div>
+                <span class="text-xl font-bold gradient-text">Earn Money</span>
+            </div>
             <button onclick="closeMobileMenu()" class="text-gray-400 hover:text-white text-2xl transition-all hover:rotate-90">
                 <i class="fas fa-times"></i>
             </button>
@@ -557,7 +659,7 @@
             <a href="apps.html" class="mobile-link"><i class="fas fa-mobile-alt w-5"></i> Apps</a>
             <a href="products.html" class="mobile-link"><i class="fas fa-shopping-bag w-5"></i> Products</a>
             <a href="academy.html" class="mobile-link"><i class="fas fa-graduation-cap w-5"></i> Academy</a>
-            <a href="referral.html" class="mobile-link"><i class="fas fa-gift w-5"></i> Referral Apps</a>
+            <a href="referal.html" class="mobile-link"><i class="fas fa-gift w-5"></i> Referral Apps</a>
             <a href="booking.html" class="mobile-link"><i class="fas fa-calendar-check w-5"></i> Book</a>
             <a href="contact.html" class="mobile-link"><i class="fas fa-envelope w-5"></i> Contact</a>
         </nav>
@@ -571,9 +673,12 @@
     <nav id="navbar" class="nav-sticky">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="text-xl font-bold gradient-text hover:scale-105 transition-transform">ErVikasTech</a>
+                <a href="index.html" class="flex items-center gap-3 hover:scale-105 transition-transform">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold">A</div>
+                    <span class="text-xl font-bold gradient-text">Earn Money</span>
+                </a>
 
-                <div class="hidden lg:flex items-center gap-6">
+                <div class="hidden lg:flex items-center gap-5">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="about.html" class="nav-link active">About</a>
                     <a href="services.html" class="nav-link">Services</a>
@@ -619,6 +724,33 @@
                 <p class="text-gray-400 mt-3 max-w-2xl mx-auto">
                     From zero to 12M+ followers — here's how I built my brand and how I can help you do the same.
                 </p>
+            </div>
+
+            <!-- ════════════════════════════════════════════════ -->
+            <!-- ★ INTRODUCTION VIDEO SECTION ★                 -->
+            <!-- ════════════════════════════════════════════════ -->
+            <div class="max-w-4xl mx-auto mb-16 reveal visible" style="transition-delay: 0.15s;">
+                <div class="glass-card rounded-2xl p-4 md:p-6">
+                    <div class="video-wrapper" id="introVideoWrapper">
+                        <div class="video-overlay"></div>
+                        <!-- ★ REPLACE src WITH YOUR INTRO VIDEO URL ★ -->
+                        <video id="introVideo" muted preload="metadata" poster="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&h=450&fit=crop&auto=format">
+                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                            <!-- Replace with your video:
+                            <source src="assets/videos/intro.mp4" type="video/mp4" />
+                            -->
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="play-btn pulse" id="introPlayBtn" onclick="toggleIntroVideo()">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <span class="duration-badge" id="introDuration">2:34</span>
+                        <div class="video-title-overlay">
+                            <h3>👋 Hi, I'm Alex Morgan</h3>
+                            <p>My journey from zero to 12M+ followers • Watch my introduction</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Hero Stats -->
@@ -953,7 +1085,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid sm:grid-cols-2 md:grid-cols-5 gap-8">
                 <div class="md:col-span-2">
-                    <h4 class="text-lg font-bold gradient-text">Alex Morgan</h4>
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold">A</div>
+                        <h4 class="text-lg font-bold gradient-text">Alex Morgan</h4>
+                    </div>
                     <p class="text-sm text-gray-400 mt-2 max-w-sm">Helping creators build empires through app promotions, affiliate marketing, and strategic brand collaborations.</p>
                     <div class="flex gap-3 mt-4">
                         <a href="#" class="text-gray-400 hover:text-white transition-all hover:translate-y-[-2px]"><i class="fab fa-youtube"></i></a>
@@ -978,9 +1113,9 @@
                     <h5 class="font-semibold text-white mb-3">Resources</h5>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li><a href="academy.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Academy</a></li>
+                        <li><a href="referral.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Referral Apps</a></li>
                         <li><a href="booking.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Book a Session</a></li>
                         <li><a href="contact.html" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Contact</a></li>
-                        <li><a href="#" class="hover:text-purple-400 transition-all hover:translate-x-1 inline-block">Community</a></li>
                     </ul>
                 </div>
                 <div>
@@ -1076,6 +1211,58 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+        // ─── Introduction Video Functions ───
+        let isIntroPlaying = false;
+        const introVideo = document.getElementById('introVideo');
+        const introPlayBtn = document.getElementById('introPlayBtn');
+        const introWrapper = document.getElementById('introVideoWrapper');
+
+        function toggleIntroVideo() {
+            if (introVideo.paused) {
+                // Pause any other videos on the page
+                document.querySelectorAll('.video-wrapper video').forEach(v => {
+                    if (v !== introVideo && !v.paused) {
+                        v.pause();
+                        const btn = v.closest('.video-wrapper').querySelector('.play-btn');
+                        if (btn) btn.innerHTML = '<i class="fas fa-play"></i>';
+                    }
+                });
+                introVideo.play();
+                introPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                introPlayBtn.classList.remove('pulse');
+                isIntroPlaying = true;
+            } else {
+                introVideo.pause();
+                introPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+                introPlayBtn.classList.add('pulse');
+                isIntroPlaying = false;
+            }
+        }
+
+        // Listen for video end to reset play button
+        introVideo.addEventListener('ended', function() {
+            introPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+            introPlayBtn.classList.add('pulse');
+            isIntroPlaying = false;
+        });
+
+        // Click on video wrapper to toggle (except when clicking on play button)
+        introWrapper.addEventListener('click', function(e) {
+            if (e.target.tagName !== 'VIDEO' && e.target.closest('.play-btn') === null) {
+                toggleIntroVideo();
+            }
+        });
+
+        // ─── Set video duration from metadata ───
+        introVideo.addEventListener('loadedmetadata', function() {
+            const duration = introVideo.duration;
+            if (duration && !isNaN(duration)) {
+                const mins = Math.floor(duration / 60);
+                const secs = Math.floor(duration % 60);
+                document.getElementById('introDuration').textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+            }
+        });
+
         // ─── Smooth Anchor Links ───
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1088,6 +1275,7 @@
         });
 
         console.log('📄 About Page Loaded Successfully!');
+        console.log('🎬 Introduction video added with play/pause controls');
         console.log('🔄 Navigation: All links working properly');
     </script>
 </body>
